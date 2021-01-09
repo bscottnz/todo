@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+// colors
+
+// $blue: #a1c3d1;
+// $purple: #b39bc8;
+// $purple-dark: #a82d92;
+// $off-white: #f0ebf4;
+// $pale-pink: rgb(241, 114, 161);
+// $pink: #e64398;
+
+$purple :#501f3a;
+$purple-light : #c38d9e;
+$pink: #cb2d6f;
+$cream: #eee;
+$cream-light: #fff;
+$cream-dark:#ddd ;
+$blue:#75d8d5;
+$blue-dark: #3ba395;
+
+$orange: #e27d60;
+$orange-light: #e8a87c;
+
+$orange-pink: #ec848b;
+
+
+
+$grey-light: rgb(185, 185, 185);
+
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1 rem = 10 px (browser default is 16)
+    overflow-x: hidden;
+    font-size: 12px;
+}
+
+body {
+    // position: relative;
+    height: 100vh;
+    font-family: lato, sans-serif;
+    font-size: 1.6rem;
+    color: rgb(20, 20, 20);
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right, 
+                        $blue-dark 0%,
+                        $blue 50%,
+                        rgb(255,255,255) 50%,
+                        rgb(255,255,255) 100%);
+    // background-image: linear-gradient(to right bottom, 
+    //                     $blue-dark,
+    //                     $blue);
+}

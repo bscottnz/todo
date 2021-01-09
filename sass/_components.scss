@@ -1,0 +1,137 @@
+.todo {
+    display: flex;
+    background-color: #eee;
+    // background-color: steelblue;
+    height: 4rem;
+    align-items: center;
+    padding: 1rem;
+    // transition: transform 5s;
+    
+    margin-bottom: 1rem;
+
+    &__title {
+        margin-right: 2rem;
+        margin-right: auto;
+        font-weight: 300;
+
+        &-checked {
+            color: rgb(141, 141, 141);
+            text-decoration: line-through;
+        }
+    }
+
+    &__detail {
+        margin-right: 2rem;
+        font-size: 1rem;
+        color: $blue-dark;
+        text-transform: uppercase;
+        font-weight: 700;
+        
+        position: relative;
+        
+        border: 1px solid $blue-dark;
+        border-radius: 3px;
+        padding: .5rem 1rem;
+        cursor: pointer;
+        transition: all .3s;
+        
+
+        &:hover {
+            background-color: $blue-dark;
+            color: white;
+            position: relative;
+        }
+
+        &-checked {
+            color: rgba($blue-dark, .5);
+            border: 1px solid rgba($blue-dark, .5);
+
+            &:hover {
+                background-color: rgba($blue-dark, .5);
+                border: 1px solid rgba($blue-dark, 0);
+                
+                
+            }
+        }
+
+       
+    }
+
+    &__date {
+        
+        font-size: 1rem;
+        color: $purple;
+        margin-right: 2rem;
+
+        &-checked {
+            color: rgba($purple, .5);
+        }
+    }
+
+    &__complete {
+        margin-right: 1.5rem;
+        // margin-left: .5rem;
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 3px;
+        border: 2px solid $blue-dark;
+        
+        &-checked {
+            height: 1.5rem;
+            width: 1.5rem;
+            display: block;
+           
+            background: url('../img/check.png'), $blue-dark;
+            background-repeat: no-repeat;
+            
+            background-size: contain;
+        }
+
+        
+    }
+
+    &__icon {
+        fill: $purple;
+        width: 1.5rem;
+        height: 1.5rem;
+        cursor: pointer;
+        transition: all .2s;
+
+        &:hover {
+            // transform: scale(1.2);
+            fill: $blue-dark;
+        }
+
+        &-checked {
+            fill: rgba($purple, .4);
+            &:hover {
+                // transform: scale(1.2);
+                fill: rgba($blue-dark, .5);
+            }
+        }
+
+        
+    }
+
+    &:hover {
+        transform: scale(1.003) ;
+        
+        box-shadow: 3px 3px 5px 2px rgba(0,0,0,.2);
+        transition: all .2s ease-out;
+        transform-origin: 50% 50%;
+    }
+    
+}
+
+.priority {
+    &-low {
+        border-left: 3px solid green;
+    }
+    &-medium {
+        border-left: 3px solid orange;
+    }
+    &-high {
+        border-left: 3px solid red;
+    }
+
+}
