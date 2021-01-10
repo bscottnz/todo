@@ -1,0 +1,87 @@
+
+.nav {
+    
+    font-size: 2rem;
+    font-weight: 300;
+    list-style: none;
+
+    
+    
+
+    &__item {
+        
+        margin-bottom: 1rem;
+        padding: .5rem 1.5rem;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+
+        &:hover {
+            border-bottom: 2px solid $blue-dark;
+        }
+
+        &--projects {
+            
+            padding: 0;
+            
+            &:hover {
+                border-bottom: 2px solid transparent;
+            }
+            
+
+            &-title {
+                padding: .5rem 1.5rem;
+                display: block;
+                border-bottom: 2px solid transparent;
+                cursor: pointer;
+
+                
+                &:hover {
+                    border-bottom: 2px solid $blue-dark;
+                }
+            }
+        }
+
+    }
+
+    &__selected {
+        border-bottom: 2px solid $blue-dark !important;
+    }
+
+}
+
+.projects {
+    margin-left: 4rem;
+    margin-top: 1rem;
+    list-style: none;
+    font-size: 1.6rem;
+    // display: none;
+    &__item {
+        padding: .4rem .8rem;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+
+        &:hover {
+            border-bottom: 2px solid $blue-dark;
+        }
+        &:not(:last-child) {
+            
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+.new-todo {
+    height: 5rem;
+    width: 5rem;
+    font-size: 5rem;
+    line-height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4px;
+    border-radius: 50%;
+    box-shadow: .2rem .5rem 1rem rgba(0,0,0,.4);
+    color: $cream;
+
+    background-color: $purple-light;
+}

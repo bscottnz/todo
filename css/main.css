@@ -55,8 +55,8 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: -webkit-gradient(linear, left top, right top, from(#3ba395), color-stop(50%, #75d8d5), color-stop(50%, white), to(white));
-  background-image: linear-gradient(to right, #3ba395 0%, #75d8d5 50%, white 50%, white 100%);
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#3ba395), to(#75d8d5));
+  background-image: linear-gradient(to right bottom, #3ba395, #75d8d5);
 }
 
 .todo {
@@ -185,6 +185,22 @@ body {
   border-left: 3px solid red;
 }
 
+.create-new {
+  height: 40rem;
+  width: 80rem;
+  background-color: steelblue;
+  position: relative;
+}
+
+.create-new__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  line-height: 1rem;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
 .content {
   width: 110rem;
   height: 60rem;
@@ -233,6 +249,17 @@ body {
   -ms-grid-column-span: 1;
   grid-column: 1 / 2;
   background-color: #eee;
+  padding: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .main {
@@ -245,5 +272,108 @@ body {
   background-color: #fff;
   border-left: 1px solid #b9b9b9;
   padding: 4rem;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: none;
+}
+
+.nav {
+  font-size: 2rem;
+  font-weight: 300;
+  list-style: none;
+}
+
+.nav__item {
+  margin-bottom: 1rem;
+  padding: .5rem 1.5rem;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.nav__item:hover {
+  border-bottom: 2px solid #3ba395;
+}
+
+.nav__item--projects {
+  padding: 0;
+}
+
+.nav__item--projects:hover {
+  border-bottom: 2px solid transparent;
+}
+
+.nav__item--projects-title {
+  padding: .5rem 1.5rem;
+  display: block;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.nav__item--projects-title:hover {
+  border-bottom: 2px solid #3ba395;
+}
+
+.nav__selected {
+  border-bottom: 2px solid #3ba395 !important;
+}
+
+.projects {
+  margin-left: 4rem;
+  margin-top: 1rem;
+  list-style: none;
+  font-size: 1.6rem;
+}
+
+.projects__item {
+  padding: .4rem .8rem;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.projects__item:hover {
+  border-bottom: 2px solid #3ba395;
+}
+
+.projects__item:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.new-todo {
+  height: 5rem;
+  width: 5rem;
+  font-size: 5rem;
+  line-height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 4px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0.2rem 0.5rem 1rem rgba(0, 0, 0, 0.4);
+  color: #eee;
+  background-color: #c38d9e;
 }
 /*# sourceMappingURL=main.css.map */

@@ -32,6 +32,10 @@
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     background-color: $cream;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     // background-color: $orange-light;
     
 }
@@ -43,4 +47,20 @@
     // background-color: transparent;
     border-left: 1px solid $grey-light;
     padding: 4rem;
+}
+
+.overlay {
+    background-color: rgba(0,0,0,.6);
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    display: none;
 }

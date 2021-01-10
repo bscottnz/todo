@@ -1,0 +1,16 @@
+.create-new {
+    height: 40rem;
+    width: 80rem;
+    background-color: steelblue;
+    position: relative;
+
+    &__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        line-height: 1rem;
+        font-size: 3rem;
+        cursor: pointer;
+    }
+
+}
