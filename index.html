@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="overlay">
+        <div class="create-new">
+            <div class="create-new__close">&times;</div>
+            <div class="create-new__group">
+                <input type="text" class="create-new__input" placeholder="New To Do" id="new-todo" name="new-todo" required>
+                <label for="new-todo" class="create-new__label">New To Do</label>
+            </div>
+
+            <div class="create-new__group">
+                <input type="text" class="create-new__input" placeholder="Due date" id="new-todo" name="new-todo" required>
+                <label for="new-todo" class="create-new__label">Dute date</label>
+            </div>
+
+            <div class="create-new__group">
+                <input type="radio" id="low"
+                name="priority" value="low">
+                <label for="low">Low</label>
+
+                <input type="radio" id="medium"
+                name="priority" value="medium">
+                <label for="medium">Medium</label>
+
+                <input type="radio" id="high"
+                name="priority" value="high">
+                <label for="high">High</label>
+            </div>
+
+                    
+        </div>
+    </div>
+
+    <div class="content">
+
+        
+
+        
+        <header class="header">
+            <img src="../img/logo.png" alt="logo" class="logo">
+        </header>
+
+        <nav class="side-bar">
+
+            <ul class="nav">
+                <li class="nav__item nav__selected">Home</li>
+                <li class="nav__item">Today</li>
+                <li class="nav__item">Week</li>
+                <li class="nav__item nav__item--projects">
+                    <span class="nav__item--projects-title">Projects</span>
+                    <ul class="projects">
+                        <li class="projects__item">Work</li>
+                        <li class="projects__item">Gym</li>
+                        <li class="projects__item">Study</li>
+                    </ul>
+                </li>
+                <li class="nav__item">Notes</li>
+
+            </ul>
+            <div class="new-todo">&plus;</div>
+
+        </nav>
+
+        <main class="main">
+            
+            <!-- <div class="todo priority-high">
+                <div class="todo__complete todo__complete-checked">
+                    
+                    
+                </div>
+                <div class="todo__title todo__title-checked">
+                    Eat some cheese
+                </div>
+                <div class="todo__detail todo__detail-checked">
+                    details
+                </div>
+                <div class="todo__date todo__date-checked">
+                    May 18th
+                </div>
+                <svg class="todo__icon todo__icon-checked">
+                    <use xlink:href="../img/icons.svg#icon-bin">
+                </svg>
+                
+                
+            </div>
+            <div class="todo priority-medium">
+                <div class="todo__complete">
+                    
+                </div>
+                <div class="todo__title">
+                    Finish to do project
+                </div>
+                <div class="todo__detail">
+                    details
+                </div>
+                <div class="todo__date">
+                    May 18th
+                </div>
+                <svg class="todo__icon">
+                    <use xlink:href="../img/icons.svg#icon-bin">
+                </svg>
+                
+            </div>
+            <div class="todo priority-low">
+                <div class="todo__complete">
+                    
+                </div>
+                <div class="todo__title">
+                    Scratch my foot
+                </div>
+                <div class="todo__detail">
+                    details
+                </div>
+                <div class="todo__date">
+                    May 18th
+                </div>
+                <svg class="todo__icon">
+                    <use xlink:href="../img/icons.svg#icon-bin">
+                </svg>
+                
+            </div>
+            <div class="todo priority-low">
+                <div class="todo__complete">
+                    
+                </div>
+                <div class="todo__title">
+                    Slay noobs
+                </div>
+                <div class="todo__detail">
+                    details
+                </div>
+                <div class="todo__date">
+                    May 18th
+                </div>
+                <svg class="todo__icon">
+                    <use xlink:href="../img/icons.svg#icon-bin">
+                </svg>
+                
+            </div>
+            <div class="todo priority-medium">
+                <div class="todo__complete">
+                    
+                </div>
+                <div class="todo__title">
+                    Go shopping
+                </div>
+                <div class="todo__detail">
+                    details
+                </div>
+                <div class="todo__date">
+                    May 18th
+                </div>
+                <svg class="todo__icon">
+                    <use xlink:href="../img/icons.svg#icon-bin">
+                </svg>
+                
+            </div> -->
+        </main>
+
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
