@@ -8,35 +8,75 @@
 </head>
 <body>
 
-    <div class="overlay">
-        <div class="create-new">
-            <div class="create-new__close">&times;</div>
-            <div class="create-new__group">
-                <input type="text" class="create-new__input" placeholder="New To Do" id="new-todo" name="new-todo" required>
-                <label for="new-todo" class="create-new__label">New To Do</label>
+    <div class="overlay overlay-invisible">
+        
+        <!-- <div class="overlay"> -->
+        <form class="create-new">
+        <!-- <form class="create-new create-new-open"> -->
+            
+            <div class="create-new__header">
+                <h2 class="create-new__heading">Create a new...</h2>
+                <div class="create-new__close">&times;</div>
             </div>
-
-            <div class="create-new__group">
-                <input type="text" class="create-new__input" placeholder="Due date" id="new-todo" name="new-todo" required>
-                <label for="new-todo" class="create-new__label">Dute date</label>
-            </div>
-
-            <div class="create-new__group">
-                <input type="radio" id="low"
-                name="priority" value="low">
-                <label for="low">Low</label>
-
-                <input type="radio" id="medium"
-                name="priority" value="medium">
-                <label for="medium">Medium</label>
-
-                <input type="radio" id="high"
-                name="priority" value="high">
-                <label for="high">High</label>
-            </div>
+            
+            <div class="create-new__content">
+                <div class="create-new__sidebar">
+                	<ul class="create-new__options">
+                	    <li class="create-new__options-items create-new__options-items-active">To Do</li>
+                	    <li class="create-new__options-items">Project</li>
+                	    <li class="create-new__options-items">Note</li>
+                
+                	</ul>
+                </div>
+                <div class="create-new__entry">
+                    
+                    
+                    <textarea class="create-new__input" placeholder="Title: Pay bills" 
+                    id="new-todo-title" name="new-todo" maxlength="40" required></textarea>
+                        
+                    
 
                     
-        </div>
+                    <textarea class="create-new__input create-new__input-big" 
+                    placeholder="Details: e.g internet, phone, rent." id="new-todo-title" 
+                    name="new-todo" required></textarea>
+                        
+                    
+                    <div class="create-new__date">
+                        <div class="create-new__date-title">Due Date:</div>
+                        <input type="date" class="create-new__date-input"id="new-todo-date" 
+                        name="new-todo" required>
+                    </div>
+                    
+
+                    <div class="create-new__wrapper-priority-submit">
+                        <div class="create-new__priority">
+                            <div class="create-new__priority-title">Priority:</div>
+                            <input type="radio" id="low"  
+                            name="priority" value="low" required>
+                            <label for="low" class="create-new__priority-btn create-new__priority-btn--low">Low</label>
+            
+                            <input type="radio" id="medium" 
+                            name="priority" value="medium" required>
+                            <label for="medium" class="create-new__priority-btn create-new__priority-btn--medium">Medium</label>
+            
+                            <input type="radio" id="high" 
+                            name="priority" value="high">
+                            <label for="high" class="create-new__priority-btn create-new__priority-btn--high">High</label required>
+                        </div>   
+                        
+                        
+                        
+
+                        <input type="submit" class="create-new__todo-submit" id="todo-submit" value="Add To Do"> 
+                        
+                    </div>
+                    
+                </div>
+
+            </div>
+             
+        </form>
     </div>
 
     <div class="content">
