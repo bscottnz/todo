@@ -1,81 +1,96 @@
+// ###########################################
+// components
+// ###########################################
+
+
+
+// ###########################################
+// a single to do item
+// ###########################################
+
 .todo {
     display: flex;
-    background-color: #eee;
-    // background-color: steelblue;
-    height: 4rem;
     align-items: center;
+    height: 4rem;
     padding: 1rem;
-    // transition: transform 5s;
-    
     margin-bottom: 1rem;
 
+    background-color: #eee;
+   
+    // name of to do item
     &__title {
         margin-right: 2rem;
         margin-right: auto;
+
         font-weight: 300;
 
+        // modified styling for when the item has been checked off
         &-checked {
             color: rgb(141, 141, 141);
             text-decoration: line-through;
         }
     }
 
+    // button that displays to-do details
     &__detail {
+        position: relative;
+
         margin-right: 2rem;
+        padding: .5rem 1rem;
+        border: 1px solid $blue-dark;
+        border-radius: 3px;
+
         font-size: 1rem;
         color: $blue-dark;
         text-transform: uppercase;
         font-weight: 700;
         
-        position: relative;
-        
-        border: 1px solid $blue-dark;
-        border-radius: 3px;
-        padding: .5rem 1rem;
         cursor: pointer;
         transition: all .3s;
         
 
         &:hover {
+            position: relative;
             background-color: $blue-dark;
             color: white;
-            position: relative;
         }
 
+        // modified styling for when the item has been checked off
         &-checked {
-            color: rgba($blue-dark, .5);
             border: 1px solid rgba($blue-dark, .5);
-
+            color: rgba($blue-dark, .5);
+            
             &:hover {
-                background-color: rgba($blue-dark, .5);
                 border: 1px solid rgba($blue-dark, 0);
-                
-                
+                background-color: rgba($blue-dark, .5);
             }
         }
 
        
     }
 
+    // to-do item due date
     &__date {
+        margin-right: 2rem;
         
         font-size: 1rem;
         color: $purple;
-        margin-right: 2rem;
 
+        // modified styling for when item is checked off
         &-checked {
             color: rgba($purple, .5);
         }
     }
 
+    // check box for when the to-do item has been complete
     &__complete {
         margin-right: 1.5rem;
-        // margin-left: .5rem;
         height: 1.5rem;
         width: 1.5rem;
         border-radius: 3px;
         border: 2px solid $blue-dark;
         
+        // modified styling for when the item has been checked off
         &-checked {
             height: 1.5rem;
             width: 1.5rem;
@@ -83,29 +98,30 @@
            
             background: url('../img/check.png'), $blue-dark;
             background-repeat: no-repeat;
-            
             background-size: contain;
         }
 
         
     }
 
+    // trash can icon that deletes to-do item
     &__icon {
-        fill: $purple;
         width: 1.5rem;
         height: 1.5rem;
+
+        fill: $purple;
+        
         cursor: pointer;
         transition: all .2s;
 
         &:hover {
-            // transform: scale(1.2);
             fill: $blue-dark;
         }
 
+        // modified styling for when the item has been checked off
         &-checked {
             fill: rgba($purple, .4);
             &:hover {
-                // transform: scale(1.2);
                 fill: rgba($blue-dark, .5);
             }
         }
@@ -113,16 +129,17 @@
         
     }
 
+    // to-do item pops out when hovered
     &:hover {
-        transform: scale(1.003) ;
-        
+        transform: scale(1.003);
+        transform-origin: 50% 50%;
         box-shadow: 3px 3px 5px 2px rgba(0,0,0,.2);
         transition: all .2s ease-out;
-        transform-origin: 50% 50%;
     }
     
 }
 
+// to-do priority level is conveyed through a left border on the to-do item
 .priority {
     &-low {
         border-left: 3px solid green;
@@ -133,5 +150,4 @@
     &-high {
         border-left: 3px solid red;
     }
-
 }

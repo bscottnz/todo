@@ -13,7 +13,7 @@ $purple :#501f3a;
 $purple-light : #c38d9e;
 $pink: #cb2d6f;
 $cream: #eee;
-$cream-light: #fff;
+$cream-light: #f7f7f7;
 $cream-dark:#ddd ;
 $blue:#75d8d5;
 $blue-dark: #3ba395;
@@ -26,7 +26,7 @@ $orange-pink: #ec848b;
 
 
 $grey-light: rgb(185, 185, 185);
-
+$color-text: rgb(20, 20, 20);
 
 *,
 *::before,
@@ -38,27 +38,29 @@ $grey-light: rgb(185, 185, 185);
 
 html {
     box-sizing: border-box;
-    font-size: 62.5%; // 1 rem = 10 px (browser default is 16)
     overflow-x: hidden;
+    
+    font-size: 62.5%; // 1 rem = 10 px (browser default is 16)
     font-size: 12px;
 }
 
 body {
-    // position: relative;
     height: 100vh;
-    font-family: lato, sans-serif;
-    font-size: 1.6rem;
-    color: rgb(20, 20, 20);
-
     display:flex;
     align-items: center;
     justify-content: center;
-    // background-image: linear-gradient(to right, 
-    //                     $blue-dark 0%,
-    //                     $blue 50%,
-    //                     rgb(255,255,255) 50%,
-    //                     rgb(255,255,255) 100%);
-    background-image: linear-gradient(to right bottom, 
-                        $blue-dark,
-                        $blue);
+
+    background-image:  linear-gradient(to right bottom, 
+                        rgba($blue-dark, .8),
+                        rgba($blue, .9)), 
+                        url("../img/wood-bg.jpg");
+    background-size: cover;
+
+    font-family: lato, sans-serif;
+    font-size: 1.6rem;
+    color: $color-text;
+}
+
+li {
+    list-style: none;
 }

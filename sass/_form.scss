@@ -1,16 +1,280 @@
+// ##################################################
+// new todo popup overall layout
+// ##################################################
+
 .create-new {
-    height: 40rem;
-    width: 80rem;
-    background-color: steelblue;
     position: relative;
 
+    height: 40rem;
+    width: 80rem;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2rem 4rem rgba(0,0,0,0.6);
+
+    background-color: $cream-light;
+    
+    transform: scale(0.2);
+    transition: all .3s;
+
+    // when popup is opened, this class is applied
+    // and the popup expands into view
+    &-open {
+        transform: scale(1);
+    }
+    
+    // close popup icon
     &__close {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 1.4rem;
+        right: 1.1rem;
+
+        color: $cream-light;
         line-height: 1rem;
         font-size: 3rem;
+
         cursor: pointer;
     }
 
+    // header with title and close button
+    &__header {
+        display: flex;
+        align-items: center;
+        height: 4rem;
+        border-bottom: 1px solid $grey-light;
+
+        background-color: $purple-light;
+    }
+
+    // header title 
+    &__heading {
+        color: $cream-light;
+        margin-left: 1rem;
+        
+    }
+
+    &__sidebar {
+        width: 14rem;
+        padding: 1rem;
+
+        background-color: $cream;
+    }
+
+    // wrapper around options and input area 
+    &__content {
+        display: flex;
+        // padding: 4rem;
+        height: calc(100% - 4rem);
+    }
+
+    // list of catagories to create
+    &__options {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        padding-left: .5rem;
+        padding-right: 4rem;
+
+        font-size: 1.8rem;
+        font-weight: 300;
+
+        // catagory name
+        &-items {
+            padding: .5rem 1rem;
+            margin-top: .5rem;
+            border-left: 3px solid transparent;
+
+            cursor: pointer;
+
+            &:hover {
+                border-left: 3px solid $purple-light;
+                border-radius: 3px;
+            }
+
+            &-active {
+                border-left: 3px solid $purple-light;
+                border-radius: 3px;
+            }
+        }
+    }
+    // input panel
+    &__entry {
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        border-left: 1px solid $grey-light;
+        
+    }
+    // text input
+    &__input {
+        width: 100%;
+        border: none;
+
+        background-color: transparent;
+
+        color: $color-text;
+        font-size: 1.6rem;
+        font-family: lato, sans-serif;
+
+        resize: none;
+
+        &:focus {
+            outline: none;
+        }
+
+        // larger input area
+        &-big {
+            height: 12rem;
+            margin-bottom: auto;
+
+            font-size: 1.4rem;
+        }
+    }
+
+    // date section
+    &__date {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        &-title {
+            margin-right: 1rem;
+        }
+
+
+        // date input
+        &-input {
+            padding: .5rem 1rem;
+            border: 1px solid $blue-dark;
+            border-radius: 5px;
+
+            color: $blue-dark;
+            background-color: transparent;
+
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: lato, sans-serif;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    // wrapper around the priority/submit section
+    &__wrapper-priority-submit {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    // priority input container
+    &__priority {
+        display: flex;
+        align-items: center;
+
+        // priority heading
+        &-title {
+            margin-right: 2.6rem;
+            // color: red;
+        }
+
+        // invisible radio buttons. the label is used for selection instead
+        input[type="radio"] {
+            // this is so the "required" popup still works
+            // it wouldnt show when i tried display: none;
+            position: relative;
+            left: 2.2rem;
+
+            height: 1px;
+            width: 1px;
+            padding: 0;
+            margin: 0;
+
+            opacity: 0;
+            
+        }
+
+        // radio button label "buttons"
+        &-btn {
+            display: inline-block;
+            margin: 0 1.5rem 0 -5px;
+            padding: .5rem 1rem;
+            border-radius: 3px;
+            
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            
+            cursor: pointer;
+            transition: all .3s;
+
+            &:hover {
+                color: white;
+            }
+
+            &--low {
+
+                border: 1px solid green;
+                color: green;
+
+                &:hover {
+                    background-color: green; 
+                }
+            }
+
+            &--medium {
+                border: 1px solid orange;
+                color: orange;
+
+                &:hover {
+                    background-color: orange;
+                }
+            }
+
+            &--high {
+                border: 1px solid red;
+                color:red;
+
+                &:hover {
+                    background-color: red;
+                }
+                
+            }
+
+            
+        }
+    }
+
+    // submit todo button
+    &__todo-submit {
+        text-align: center;
+        align-self: center;
+
+        padding: .5rem 1rem;
+        border-radius: 3px;
+        border: 1px solid $blue-dark;
+        
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $blue-dark;
+        background-color: transparent;
+        
+        cursor: pointer;
+        transition: all .3s;
+
+        &:hover {
+            color: white;
+            background-color: $blue-dark;
+        }
+
+        &:active {
+            outline: none;
+        }
+    }
 }
+
+
+    

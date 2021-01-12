@@ -1,67 +1,82 @@
 
+// ##########################################
+// main page navigation
+// ##########################################
+
 .nav {
-    
     font-size: 2rem;
     font-weight: 300;
+
     list-style: none;
-
     
-    
-
+    // navigation list item
     &__item {
-        
+        width: auto;
         margin-bottom: 1rem;
         padding: .5rem 1.5rem;
-        border-bottom: 2px solid transparent;
+        border-left: 3px solid transparent;
+
         cursor: pointer;
 
         &:hover {
-            border-bottom: 2px solid $blue-dark;
+            border-left: 3px solid $purple-light;
+            border-radius: 3px;
         }
 
+        // list item containing a title and a sublist of projects
         &--projects {
-            
             padding: 0;
             
             &:hover {
-                border-bottom: 2px solid transparent;
+                border-left: 3px solid transparent;
             }
             
-
+            // "Projects" title
             &-title {
                 padding: .5rem 1.5rem;
                 display: block;
-                border-bottom: 2px solid transparent;
+                border-left: 3px solid transparent;
+                border-radius: 3px;
+
                 cursor: pointer;
 
-                
                 &:hover {
-                    border-bottom: 2px solid $blue-dark;
+                    border-left: 3px solid $purple-light;
                 }
             }
         }
 
     }
 
+    // the current selected list item
     &__selected {
-        border-bottom: 2px solid $blue-dark !important;
+        border-left: 3px solid $purple-light !important;
+        border-radius: 3px;
+        
+
     }
 
 }
 
+// projects sub list
 .projects {
     margin-left: 4rem;
     margin-top: 1rem;
-    list-style: none;
+
     font-size: 1.6rem;
-    // display: none;
+
+    list-style: none;
+    
+    // projects list item
     &__item {
         padding: .4rem .8rem;
-        border-bottom: 2px solid transparent;
+        border-left: 3px solid transparent;
+
         cursor: pointer;
 
         &:hover {
-            border-bottom: 2px solid $blue-dark;
+            border-left: 3px solid $purple-light;
+            border-radius: 3px;
         }
         &:not(:last-child) {
             
@@ -70,18 +85,28 @@
     }
 }
 
+// button to create new todo / project / note
 .new-todo {
     height: 5rem;
     width: 5rem;
-    font-size: 5rem;
-    line-height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-bottom: 4px;
     border-radius: 50%;
-    box-shadow: .2rem .5rem 1rem rgba(0,0,0,.4);
-    color: $cream;
 
     background-color: $purple-light;
+
+    font-size: 5rem;
+    line-height: 5rem;
+    color: $cream;
+
+    box-shadow: .2rem .5rem 1rem rgba(0,0,0,.4);
+    cursor: pointer;
+    
+    // effects to simulate a button being pressed
+    &:active {
+        transform: translateY(2px);
+        box-shadow: .1rem .3rem .5rem rgba(0,0,0,.4);
+    }
 }

@@ -30,7 +30,7 @@ export function toDoItemFactory(name, priority, date) {
 // renders todo items to the screen 
 export function renderToDos(toDoList, element) {
 
-    // element.innerHTML = "" 
+    element.innerHTML = "" 
 
     toDoList.forEach(todo => {
 
@@ -69,5 +69,29 @@ export function renderToDos(toDoList, element) {
 
         element.appendChild(toDoBody);
     })
+}
+
+// grab form input and create new book object
+export function addNewToDo(e, toDoList, display, overlay, form) {
+    console.log('hello');
+    e.preventDefault();
+     
+    const toDoTitle = (document.querySelector('#new-todo-title')).value;
+    const toDoDate = (document.querySelector('#new-todo-date')).value;
+    
+    const toDoPriority = (document.querySelector('[name="priority"]:checked')).value;
+    form.reset();
+
+    const newToDo = toDoItemFactory(toDoTitle, toDoPriority, toDoDate);
+    // myLibrary.push(newBook);
+    // console.log(newToDo);
+    // populateLibrary();
+
+    toDoList.push(newToDo);
+    renderToDos(toDoList, display);
+
+
+    overlay.classList.toggle('overlay-visible');
+    form.classList.toggle('create-new-open');
 }
 

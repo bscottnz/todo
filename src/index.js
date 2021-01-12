@@ -1,10 +1,11 @@
-import {toggleCheckBox, toDoItemFactory, renderToDos} from "./todoItemFunctions.js"
+import {toggleCheckBox, toDoItemFactory, renderToDos, addNewToDo} from "./todoItemFunctions.js"
 
 // main window to render to
-const renderWindow = document.querySelector('.main');
+const display = document.querySelector('.main');
 const openForm = document.querySelector('.new-todo');
 const closeForm = document.querySelector('.create-new__close');
 const overlay = document.querySelector('.overlay');
+const addToDoForm = document.querySelector('.create-new');
 // todo checkbox
 // const checkBoxes = document.querySelectorAll('.todo__complete');
 // array of todo items
@@ -16,21 +17,24 @@ todos.push(toDoItemFactory("scratch nutz", "high", "may 1st"));
 todos.push(toDoItemFactory("feed jimmy", "medium", "april 16th"));
 
 
-renderToDos(todos, renderWindow);
+renderToDos(todos, display);
 
 
 
 openForm.addEventListener('click', () => {
-    overlay.style.display = "flex";
+    overlay.classList.toggle('overlay-invisible');
+    addToDoForm.classList.toggle('create-new-open');
 })
+
+
 
 closeForm.addEventListener('click', () => {
-    overlay.style.display = "none";
+    overlay.classList.toggle('overlay-invisible');
+    addToDoForm.classList.toggle('create-new-open');
+    
 })
 
+addToDoForm.addEventListener('submit', e => addNewToDo(e, todos, display, overlay, addToDoForm));
 
 
-// checkBoxes.forEach(checkBox => {
-//     checkBox.addEventListener('click', toggleCheckBox);
-// })
 
