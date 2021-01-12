@@ -1,4 +1,11 @@
-import {toggleCheckBox, toDoItemFactory, renderToDos, addNewToDo} from "./todoItemFunctions.js"
+// import {toDosManager, domManipulator} from "./todoItemFunctions.js"
+
+import {toDosManager, domManipulator} from "./todoFunctions.js"
+// import {domManipulatorCreator} from "./domManipulator.js"
+
+// const domManipulator = domManipulatorCreator();
+// const toDosManager = toDosManagerCreator();
+
 
 // main window to render to
 const display = document.querySelector('.main');
@@ -11,13 +18,13 @@ const addToDoForm = document.querySelector('.create-new');
 // array of todo items
 const todos = [];
 
-todos.push(toDoItemFactory("brush teef", "low", "june 12th"));
-todos.push(toDoItemFactory("sniff coke", "high", "december 11th"));
-todos.push(toDoItemFactory("scratch nutz", "high", "may 1st"));
-todos.push(toDoItemFactory("feed jimmy", "medium", "april 16th"));
+todos.push(toDosManager.createToDo("brush teef", "low", "2021-12-12"));
+todos.push(toDosManager.createToDo("sniff coke", "high", "2021-11-11"));
+todos.push(toDosManager.createToDo("scratch nutz", "high", "2021-10-30"));
+todos.push(toDosManager.createToDo("feed jimmy", "medium", "2021-06-09"));
 
 
-renderToDos(todos, display);
+domManipulator.renderToDos(todos, display);
 
 
 
@@ -34,7 +41,11 @@ closeForm.addEventListener('click', () => {
     
 })
 
-addToDoForm.addEventListener('submit', e => addNewToDo(e, todos, display, overlay, addToDoForm));
+addToDoForm.addEventListener('submit', e => toDosManager.addNewToDo(e, todos, display, overlay, addToDoForm));
+
+//2021-01-12 mm-dd-yyyy
+
+
 
 
 

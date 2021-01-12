@@ -90,7 +90,7 @@ li {
 
 .todo__detail {
   position: relative;
-  margin-right: 2rem;
+  margin-right: 2.5rem;
   padding: .5rem 1rem;
   border: 1px solid #3ba395;
   border-radius: 3px;
@@ -121,6 +121,7 @@ li {
 
 .todo__date {
   margin-right: 2rem;
+  width: 4.5rem;
   font-size: 1rem;
   color: #501f3a;
 }
@@ -199,8 +200,8 @@ li {
   -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
           box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
   background-color: #f7f7f7;
-  -webkit-transform: scale(0.2);
-          transform: scale(0.2);
+  -webkit-transform: scale(0.05);
+          transform: scale(0.05);
   -webkit-transition: all .3s;
   transition: all .3s;
 }

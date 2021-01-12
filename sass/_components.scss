@@ -35,7 +35,7 @@
     &__detail {
         position: relative;
 
-        margin-right: 2rem;
+        margin-right: 2.5rem;
         padding: .5rem 1rem;
         border: 1px solid $blue-dark;
         border-radius: 3px;
@@ -72,6 +72,7 @@
     // to-do item due date
     &__date {
         margin-right: 2rem;
+        width: 4.5rem;
         
         font-size: 1rem;
         color: $purple;
