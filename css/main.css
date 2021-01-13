@@ -156,6 +156,10 @@ li {
   transition: all .2s;
 }
 
+.todo__icon-edit {
+  margin-right: 2rem;
+}
+
 .todo__icon:hover {
   fill: #3ba395;
 }
@@ -191,8 +195,83 @@ li {
   border-left: 3px solid red;
 }
 
+.details-popup {
+  position: relative;
+  width: 60rem;
+  padding: 3rem;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
+          box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
+  color: #501f3a;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-transform: scale(0.05);
+          transform: scale(0.05);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.details-popup-open {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  visibility: visible;
+}
+
+.details-popup > *:not(:last-child) {
+  margin-bottom: .8rem;
+}
+
+.details-popup__catagory {
+  color: #501f3a;
+  font-weight: 700;
+}
+
+.details-popup__title {
+  font-size: 3.4rem;
+  font-weight: normal;
+  margin-bottom: 1.3rem !important;
+  color: #501f3a;
+  line-height: 1;
+}
+
+.details-popup__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.details-popup__details-title {
+  margin-right: 2.7rem;
+  font-weight: 700;
+}
+
+.details-popup__details-text {
+  font-weight: normal !important;
+}
+
+.details-popup__project .details-popup__catagory {
+  margin-right: 2.4rem;
+}
+
+.details-popup__due .details-popup__catagory {
+  margin-right: .9rem;
+}
+
+.details-popup__priority .details-popup__catagory {
+  margin-right: 2.1rem;
+}
+
+.details-popup__close {
+  position: absolute;
+  top: .4rem;
+  right: 1rem;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .create-new {
   position: relative;
+  visibility: hidden;
   height: 40rem;
   width: 80rem;
   border-radius: 4px;
@@ -209,6 +288,7 @@ li {
 .create-new-open {
   -webkit-transform: scale(1);
           transform: scale(1);
+  visibility: visible;
 }
 
 .create-new__close {
@@ -407,6 +487,11 @@ li {
   background-color: green;
 }
 
+.create-new__priority-btn--low-active {
+  background-color: green;
+  color: white;
+}
+
 .create-new__priority-btn--medium {
   border: 1px solid orange;
   color: orange;
@@ -416,6 +501,11 @@ li {
   background-color: orange;
 }
 
+.create-new__priority-btn--medium-active {
+  background-color: orange;
+  color: white;
+}
+
 .create-new__priority-btn--high {
   border: 1px solid red;
   color: red;
@@ -423,6 +513,11 @@ li {
 
 .create-new__priority-btn--high:hover {
   background-color: red;
+}
+
+.create-new__priority-btn--high-active {
+  background-color: red;
+  color: white;
 }
 
 .create-new__todo-submit {
@@ -525,7 +620,7 @@ li {
   background-color: #f7f7f7;
 }
 
-.overlay {
+.overlay-new {
   z-index: 1;
   position: fixed;
   top: 0;
@@ -549,14 +644,50 @@ li {
 }
 
 @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
-  .overlay {
+  .overlay-new {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, 0.3);
   }
 }
 
-.overlay-invisible {
+.overlay-new-invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay-details {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  visibility: visible;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .overlay-details {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.overlay-details-invisible {
   visibility: hidden;
   opacity: 0;
 }

@@ -57,7 +57,7 @@
 
 // overlay that covers the screen when the create new item
 // menu is shown. 
-.overlay {
+.overlay-new {
     z-index: 1;
     position: fixed;
     top: 0;
@@ -90,7 +90,43 @@
     &-invisible {
         visibility: hidden;
         opacity: 0;
+    } 
+}
+
+// overlay for details popup. i tried sharing overlays between the different
+// popups but i had positioning issues
+.overlay-details {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
+    opacity: 1;
+
+    background-color: rgba(0,0,0,.6);
+
+    transition: all .3s;
+
+    // nice background blur effect on popup.
+    // there is a bit of lag when blur is active,
+    // blur effect is very browser resource intensive.
+    // something to keep in mind  
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba(0,0,0,.3);
     }
 
-    
+    // overlay is invisible by default.
+    // this class is toggled when the overlay is to be shown
+    &-invisible {
+        visibility: hidden;
+        opacity: 0;
+    } 
 }

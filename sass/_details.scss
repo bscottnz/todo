@@ -1,0 +1,74 @@
+// ###################################
+// to-do details popup
+// ###################################
+
+.details-popup {
+    position: relative;
+
+    // height: 30rem;
+    width: 60rem;
+    padding: 3rem;
+    border-radius: 4px;
+    box-shadow: 0 2rem 4rem rgba(0,0,0,0.6);
+    color: $purple;
+    
+    background-color: rgba(white ,0.5);
+
+    transform: scale(0.05);
+    transition: all .3s;
+
+    &-open {
+        transform: scale(1);
+        visibility: visible;
+    }
+
+    & > *:not(:last-child) {
+        margin-bottom: .8rem;
+    }
+
+    &__catagory {
+        color: $purple;
+        font-weight: 700;
+    }
+   
+    &__title {
+        font-size: 3.4rem;
+        font-weight: normal;
+        margin-bottom: 1.3rem !important;
+        color: $purple;
+        line-height: 1;
+    }
+
+    &__details {
+         display: flex;
+
+        &-title {
+            margin-right: 2.7rem;
+            font-weight: 700;
+        }
+        &-text {
+            font-weight: normal !important;
+        }
+    }
+
+    &__project .details-popup__catagory {
+        margin-right: 2.4rem;
+    }
+
+    &__due .details-popup__catagory {
+        margin-right: .9rem;
+    }
+
+    &__priority .details-popup__catagory {
+        margin-right: 2.1rem;
+    }
+
+    &__close {
+        position: absolute;
+        top: .4rem;
+        right: 1rem;
+        font-size: 3rem;
+        line-height: 1;
+        cursor: pointer;
+    }
+}

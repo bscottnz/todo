@@ -5,6 +5,7 @@
 .create-new {
     position: relative;
 
+    visibility: hidden;
     height: 40rem;
     width: 80rem;
     border-radius: 4px;
@@ -15,11 +16,13 @@
     
     transform: scale(0.05);
     transition: all .3s;
+    
 
     // when popup is opened, this class is applied
     // and the popup expands into view
     &-open {
         transform: scale(1);
+        visibility: visible;
     }
     
     // close popup icon
@@ -222,6 +225,11 @@
                 &:hover {
                     background-color: green; 
                 }
+
+                &-active {
+                    background-color: green;
+                    color: white;
+                }
             }
 
             &--medium {
@@ -230,6 +238,11 @@
 
                 &:hover {
                     background-color: orange;
+                }
+
+                &-active {
+                    background-color: orange;
+                    color: white;
                 }
             }
 
@@ -240,9 +253,13 @@
                 &:hover {
                     background-color: red;
                 }
+
+                &-active {
+                    background-color: red;
+                    color: white;
+                }
                 
             }
-
             
         }
     }
