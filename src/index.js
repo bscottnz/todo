@@ -15,6 +15,9 @@ const overlayNew = document.querySelector('.overlay-new');
 const addToDoForm = document.querySelector('.create-new');
 const detailsPopup = document.querySelector('.details-popup');
 const detailsOverlay = document.querySelector('.overlay-details');
+const editPopup = document.querySelector('.edit-popup');
+const editOverlay = document.querySelector('.overlay-edit');
+const editForm = document.querySelector('.edit-popup');
 // todo checkbox
 // const checkBoxes = document.querySelectorAll('.todo__complete');
 // array of todo items
@@ -58,6 +61,10 @@ addToDoForm.addEventListener('submit', e => {
     toDosManager.addNewToDo(e, todos, display, overlayNew, addToDoForm);
 });
 
+editForm.addEventListener('submit', e => {
+    toDosManager.editToDo(e, todos, display, editOverlay, editForm);
+})
+
 // will need to put this listener in the element creation script later
 const priorityBtns = document.querySelectorAll('.create-new__priority-btn');
     priorityBtns.forEach(btn => {
@@ -71,6 +78,13 @@ const closeDetails = document.querySelector('.details-popup__close');
 closeDetails.addEventListener('click', () => {
     detailsPopup.classList.toggle("details-popup-open");
     detailsOverlay.classList.toggle("overlay-details-invisible");
+})
+
+// close edit popup
+const closeEdit = document.querySelector('.edit-popup__close');
+closeEdit.addEventListener('click', () => {
+    editPopup.classList.toggle("edit-popup-open");
+    editOverlay.classList.toggle("overlay-edit-invisible");
 })
 
 
