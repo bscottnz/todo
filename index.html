@@ -9,13 +9,13 @@
 <body>
 
 
-    <div class="overlay-edit">
-        <div class="edit-popup edit-popup-open">
+    <div class="overlay-edit overlay-edit-invisible">
+        <div class="edit-popup">
             <div class="edit-popup__close">&times;</div>
         	<form class="edit-popup__entry">
         	            
         	            
-                <textarea class="edit-popup__input" id="new-todo-title" name="new-todo" 
+                <textarea class="edit-popup__input" id="edit-todo-title" name="edit-todo" 
                 maxlength="40" required>Title: Pay bills</textarea>
         	        
         	    
@@ -35,21 +35,18 @@
         	    <div class="edit-popup__wrapper-priority-submit">
         	        <div class="edit-popup__priority">
         	            <div class="edit-popup__priority-title">Priority:</div>
-        	            <input type="radio" id="low"  
-        	            name="priority" value="low" checked required>
-        	            <label for="low" class="edit-popup__priority-btn edit-popup__priority-btn--low edit-popup__priority-btn--low-active">Low</label>
+        	            <input type="radio" id="edit-low"  
+        	            name="edit-priority" value="low" checked required>
+        	            <label for="edit-low" class="edit-popup__priority-btn edit-popup__priority-btn--low edit-popup__priority-btn--low-active">Low</label>
             
-        	            <input type="radio" id="medium" 
-        	            name="priority" value="medium" required>
-        	            <label for="medium" class="edit-popup__priority-btn edit-popup__priority-btn--medium">Medium</label>
+        	            <input type="radio" id="edit-medium" 
+        	            name="edit-priority" value="medium" required>
+        	            <label for="edit-medium" class="edit-popup__priority-btn edit-popup__priority-btn--medium">Medium</label>
             
-        	            <input type="radio" id="high" 
-        	            name="priority" value="high" >
-        	            <label for="high" class="edit-popup__priority-btn edit-popup__priority-btn--high">High</label >
+        	            <input type="radio" id="edit-high" 
+        	            name="edit-priority" value="high" >
+        	            <label for="edit-high" class="edit-popup__priority-btn edit-popup__priority-btn--high">High</label >
         	        </div>   
-        	        
-        	        
-        	        
         
         	        <input type="submit" class="edit-popup__todo-submit" id="todo-edit-submit" value="Confirm Edit"> 
         	        
@@ -117,17 +114,17 @@
                     <div class="create-new__wrapper-priority-submit">
                         <div class="create-new__priority">
                             <div class="create-new__priority-title">Priority:</div>
-                            <input type="radio" id="low"  
-                            name="priority" value="low" required>
-                            <label for="low" class="create-new__priority-btn create-new__priority-btn--low">Low</label>
+                            <input type="radio" id="create-new-low"  
+                            name="create-new-priority" value="low" required>
+                            <label for="create-new-low" class="create-new__priority-btn create-new__priority-btn--low">Low</label>
             
-                            <input type="radio" id="medium" 
-                            name="priority" value="medium" required>
-                            <label for="medium" class="create-new__priority-btn create-new__priority-btn--medium">Medium</label>
+                            <input type="radio" id="create-new-medium" 
+                            name="create-new-priority" value="medium" required>
+                            <label for="create-new-medium" class="create-new__priority-btn create-new__priority-btn--medium">Medium</label>
             
-                            <input type="radio" id="high" 
-                            name="priority" value="high" >
-                            <label for="high" class="create-new__priority-btn create-new__priority-btn--high">High</label >
+                            <input type="radio" id="create-new-high" 
+                            name="create-new-priority" value="high" >
+                            <label for="create-new-high" class="create-new__priority-btn create-new__priority-btn--high">High</label >
                         </div>   
                         
                         
