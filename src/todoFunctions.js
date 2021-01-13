@@ -138,7 +138,7 @@ export const domManipulator = (function () {
         const day = format(new Date(todos[i].date), 'do');
         const month = format(new Date(todos[i].date), 'MMMM');
         const year = format(new Date(todos[i].date), 'yyyy');
-        const formatedDate = `${day} ${month}, ${year}`;
+        const formatedDate = `${month} ${day}, ${year}`;
         dateContent.textContent = formatedDate;
         date.appendChild(dateTitle);
         date.appendChild(dateContent);

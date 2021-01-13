@@ -1,0 +1,234 @@
+// ##################################################
+// edit todo popup overall layout
+// ##################################################
+
+.edit-popup {
+    position: relative;
+
+    visibility: hidden;
+    height: 26rem;
+    width: 55rem;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2rem 4rem rgba(0,0,0,0.6);
+
+    background-color: $cream-light;
+    
+    transform: scale(0.05);
+    transition: all .3s;
+    
+
+    // when popup is opened, this class is applied
+    // and the popup expands into view
+    &-open {
+        transform: scale(1);
+        visibility: visible;
+    }
+    
+    // close popup icon
+    &__close {
+        position: absolute;
+        top: 1.4rem;
+        right: 1.1rem;
+
+        color: $blue-dark;
+        line-height: 1rem;
+        font-size: 3rem;
+
+        cursor: pointer;
+    }
+
+
+    // input panel
+    &__entry {
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+
+        border-left: 1px solid $grey-light;
+        
+    }
+    // text input
+    &__input {
+        width: 100%;
+        border: none;
+
+        background-color: transparent;
+
+        color: $color-text;
+        font-size: 1.6rem;
+        font-family: lato, sans-serif;
+
+        resize: none;
+
+        &:focus {
+            outline: none;
+        }
+
+        // larger input area
+        &-big {
+            height: 12rem;
+            margin-bottom: auto;
+
+            font-size: 1.4rem;
+        }
+    }
+
+    // date section
+    &__date {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        &-title {
+            margin-right: 1rem;
+        }
+
+
+        // date input
+        &-input {
+            padding: .5rem 1rem;
+            border: 1px solid $blue-dark;
+            border-radius: 5px;
+
+            color: $blue-dark;
+            background-color: transparent;
+
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-family: lato, sans-serif;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    // wrapper around the priority/submit section
+    &__wrapper-priority-submit {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    // priority input container
+    &__priority {
+        display: flex;
+        align-items: center;
+
+        // priority heading
+        &-title {
+            margin-right: 2.6rem;
+            // color: red;
+        }
+
+        // invisible radio buttons. the label is used for selection instead
+        input[type="radio"] {
+            // this is so the "required" popup still works
+            // it wouldnt show when i tried display: none;
+            position: relative;
+            left: 2.2rem;
+
+            height: 1px;
+            width: 1px;
+            padding: 0;
+            margin: 0;
+
+            opacity: 0;
+            
+        }
+
+        // radio button label "buttons"
+        &-btn {
+            display: inline-block;
+            margin: 0 1.5rem 0 -5px;
+            padding: .5rem 1rem;
+            border-radius: 3px;
+            
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            
+            cursor: pointer;
+            transition: all .3s;
+
+            &:hover {
+                color: white;
+            }
+
+            &--low {
+
+                border: 1px solid green;
+                color: green;
+
+                &:hover {
+                    background-color: green; 
+                }
+
+                &-active {
+                    background-color: green;
+                    color: white;
+                }
+            }
+
+            &--medium {
+                border: 1px solid orange;
+                color: orange;
+
+                &:hover {
+                    background-color: orange;
+                }
+
+                &-active {
+                    background-color: orange;
+                    color: white;
+                }
+            }
+
+            &--high {
+                border: 1px solid red;
+                color:red;
+
+                &:hover {
+                    background-color: red;
+                }
+
+                &-active {
+                    background-color: red;
+                    color: white;
+                }
+                
+            }
+            
+        }
+    }
+
+    // submit todo button
+    &__todo-submit {
+        text-align: center;
+        align-self: center;
+
+        padding: .5rem 1rem;
+        border-radius: 3px;
+        border: 1px solid $blue-dark;
+        
+        font-size: 1rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $blue-dark;
+        background-color: transparent;
+        
+        cursor: pointer;
+        transition: all .3s;
+
+        &:hover {
+            color: white;
+            background-color: $blue-dark;
+        }
+
+        &:active {
+            outline: none;
+        }
+    }
+}
