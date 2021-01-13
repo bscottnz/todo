@@ -8,9 +8,23 @@
 </head>
 <body>
 
-    <div class="overlay overlay-invisible">
-        
-        <!-- <div class="overlay"> -->
+
+    <div class="overlay-details overlay-details-invisible">
+        <div class="details-popup">
+            <div class="details-popup__close">&times;</div>
+            <div class="details-popup__content">
+            	<div class="details-popup__title">Go shopping</div>
+            	<div class="details-popup__project"><span class="details-popup__catagory">Project:</span>Diet</div>
+            	<div class="details-popup__priority"><span class="details-popup__catagory">Priority:</span>High</div>
+            	<div class="details-popup__due"><span class="details-popup__catagory">Due Date:</span>January 23rd, 2021</div>
+            	<div class="details-popup__details"><span class="details-popup__details-title">Details: </span><span class="details-popup__details-text">I need chicken, vegetables, cream, steak and some other stuff. Maybe get some sauces n stuff too.</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="overlay-new overlay-new-invisible">
+    <!-- <div class="overlay-new"> -->
         <form class="create-new">
         <!-- <form class="create-new create-new-open"> -->
             
@@ -38,7 +52,7 @@
 
                     
                     <textarea class="create-new__input create-new__input-big" 
-                    placeholder="Details: e.g internet, phone, rent." id="new-todo-title" 
+                    placeholder="Details: e.g internet, phone, rent." id="new-todo-details" 
                     name="new-todo" required></textarea>
                         
                     
@@ -61,8 +75,8 @@
                             <label for="medium" class="create-new__priority-btn create-new__priority-btn--medium">Medium</label>
             
                             <input type="radio" id="high" 
-                            name="priority" value="high">
-                            <label for="high" class="create-new__priority-btn create-new__priority-btn--high">High</label required>
+                            name="priority" value="high" >
+                            <label for="high" class="create-new__priority-btn create-new__priority-btn--high">High</label >
                         </div>   
                         
                         
@@ -111,7 +125,7 @@
 
         <main class="main">
             
-            <!-- <div class="todo priority-high">
+            <div class="todo priority-high">
                 <div class="todo__complete todo__complete-checked">
                     
                     
@@ -125,13 +139,16 @@
                 <div class="todo__date todo__date-checked">
                     May 18th
                 </div>
-                <svg class="todo__icon todo__icon-checked">
+                <svg class="todo__icon todo__icon-checked todo__icon-edit">
+                    <use xlink:href="../img/edit.svg#icon-edit">
+                </svg>
+                <svg class="todo__icon todo__icon-checked todo__icon-bin">
                     <use xlink:href="../img/icons.svg#icon-bin">
                 </svg>
                 
                 
             </div>
-            <div class="todo priority-medium">
+            <!--<div class="todo priority-medium">
                 <div class="todo__complete">
                     
                 </div>
