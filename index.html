@@ -9,6 +9,57 @@
 <body>
 
 
+    <div class="overlay-edit">
+        <div class="edit-popup edit-popup-open">
+            <div class="edit-popup__close">&times;</div>
+        	<form class="edit-popup__entry">
+        	            
+        	            
+                <textarea class="edit-popup__input" id="new-todo-title" name="new-todo" 
+                maxlength="40" required>Title: Pay bills</textarea>
+        	        
+        	    
+        
+        	    
+        	    <textarea class="edit-popup__input edit-popup__input-big" 
+        	    id="edit-todo-details" name="edit-todo" required>Details: e.g internet, phone, rent.</textarea>
+        	        
+        	    
+        	    <div class="edit-popup__date">
+        	        <div class="edit-popup__date-title">Due Date:</div>
+        	        <input type="date" class="edit-popup__date-input"id="edit-todo-date" 
+        	        name="edit-todo" required value="2021-01-22">
+        	    </div>
+        	    
+        
+        	    <div class="edit-popup__wrapper-priority-submit">
+        	        <div class="edit-popup__priority">
+        	            <div class="edit-popup__priority-title">Priority:</div>
+        	            <input type="radio" id="low"  
+        	            name="priority" value="low" checked required>
+        	            <label for="low" class="edit-popup__priority-btn edit-popup__priority-btn--low edit-popup__priority-btn--low-active">Low</label>
+            
+        	            <input type="radio" id="medium" 
+        	            name="priority" value="medium" required>
+        	            <label for="medium" class="edit-popup__priority-btn edit-popup__priority-btn--medium">Medium</label>
+            
+        	            <input type="radio" id="high" 
+        	            name="priority" value="high" >
+        	            <label for="high" class="edit-popup__priority-btn edit-popup__priority-btn--high">High</label >
+        	        </div>   
+        	        
+        	        
+        	        
+        
+        	        <input type="submit" class="edit-popup__todo-submit" id="todo-edit-submit" value="Confirm Edit"> 
+        	        
+        	    </div>
+        	    
+        	</form>
+        </div>
+
+    </div>
+
     <div class="overlay-details overlay-details-invisible">
         <div class="details-popup">
             <div class="details-popup__close">&times;</div>
@@ -125,7 +176,7 @@
 
         <main class="main">
             
-            <div class="todo priority-high">
+            <!-- <div class="todo priority-high">
                 <div class="todo__complete todo__complete-checked">
                     
                     
@@ -147,7 +198,7 @@
                 </svg>
                 
                 
-            </div>
+            </div> -->
             <!--<div class="todo priority-medium">
                 <div class="todo__complete">
                     
