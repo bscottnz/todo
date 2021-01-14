@@ -30,10 +30,7 @@ const toDoFolders = document.querySelectorAll('.todo-folder');
 const todos = {
     "home": [],
     "today": [],
-    "week": [],
-    "projects": {
-
-    }
+    "week": []   
 }
 
 todos.home.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "home"));
@@ -42,10 +39,13 @@ todos.home.push(toDosManager.createToDo("scratch nutz", "high", "2021-10-30", " 
 todos.home.push(toDosManager.createToDo("feed jimmy", "medium", "2021-06-09", "only the finest bickies", "home"));
 
 todos.today.push(toDosManager.createToDo("eat today", "medium", "2021-06-09", "only the finest bickies", "today"));
-todos.week.push(toDosManager.createToDo("eat this week", "medium", "2021-06-09", "only the finest bickies", "week"));
+todos.today.push(toDosManager.createToDo("get mail", "medium", "2021-06-09", "only the finest bickies", "today"));
+todos.today.push(toDosManager.createToDo("cook dinner", "medium", "2021-06-09", "only the finest bickies", "today"));
+todos.week.push(toDosManager.createToDo("sunday sport", "medium", "2021-06-09", "only the finest bickies", "week"));
+todos.week.push(toDosManager.createToDo("drop letter at freds", "medium", "2021-06-09", "only the finest bickies", "week"));
 
 // initial homescreen render
-domManipulator.renderToDos(todos.home, display);
+domManipulator.renderAllToDos(todos, display);
 
 
 

@@ -82,6 +82,88 @@ export const domManipulator = (function () {
         })
     }
 
+    // render all to-dos from all projects 
+    function renderAllToDos(toDoObject, element) {
+        // clear out display before redisplaying all to-dos
+        element.innerHTML = "" 
+
+        for (const project in toDoObject) {
+
+            // create a to-do element for each todo stored in the passed array 
+            // and append them to the dom element supplied to the function
+            toDoObject[project].forEach((todo, i) => {
+                
+                // create main body of the to-do item
+                const toDoBody = document.createElement('div');
+                toDoBody.classList.add('todo');
+                toDoBody.classList.add(`priority-${todo.priority}`);
+                // give each to-do element a unique value that corresponds to
+                // it's data's position in the array
+                toDoBody.setAttribute('data-index', i);
+                // set data atrribute to the to-do items project name
+                toDoBody.setAttribute('data-project', `${todo.project}`)
+                
+                // create to-do item checkbox 
+                const toDoCheckBox = document.createElement('div');
+                toDoCheckBox.classList.add('todo__complete');
+                toDoCheckBox.addEventListener('click', toggleCheckBox);
+                
+                // create to-do item title
+                const toDoTitle = document.createElement('div');
+                toDoTitle.classList.add('todo__title');
+                toDoTitle.textContent = todo.name;
+                
+                // create to-do item details button
+                const toDoDetails = document.createElement('div');
+                toDoDetails.classList.add('todo__detail');
+                toDoDetails.textContent = 'details';
+                toDoDetails.addEventListener('click', (e) => {
+                    renderDetails(e, toDoObject[project]);
+                })
+        
+                // create a to-do due date label.
+                // displays a human readable representation of the date input string
+                const toDoDate = document.createElement('div');
+                toDoDate.classList.add('todo__date');
+                // convert date string into a date the form of "Jan 12th"
+                const dateObject = new Date(todo.date);
+                const dateMonth = format(dateObject, 'MMM');
+                const dateDay = format(dateObject, 'do');
+                const dateFormated = `${dateMonth} ${dateDay}`;
+                toDoDate.textContent = dateFormated;
+
+                // create a edit icon for the to-do item
+                const toDoEdit = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                toDoEdit.classList.add('todo__icon-edit');
+                toDoEdit.classList.add('todo__icon');
+                toDoEdit.addEventListener('click', e => renderEdit(e, toDoObject[project], element));
+                const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+                use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../img/edit.svg#icon-edit')
+                toDoEdit.appendChild(use);
+                
+                // create a delete icon for the to-do item
+                const toDoDelete = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                toDoDelete.classList.add('todo__icon');
+                toDoDelete.classList.add('todo__icon-bin');
+                toDoDelete.addEventListener('click', e => toDosManager.deleteToDo(e, toDoObject, element));
+                const use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
+                use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../img/icons.svg#icon-bin')
+                toDoDelete.appendChild(use2);
+                
+                toDoBody.appendChild(toDoCheckBox);
+                toDoBody.appendChild(toDoTitle);
+                toDoBody.appendChild(toDoDetails);
+                toDoBody.appendChild(toDoDate);
+                toDoBody.appendChild(toDoEdit);
+                toDoBody.appendChild(toDoDelete);
+        
+                element.appendChild(toDoBody);
+            })
+        }
+        
+        
+    }
+
     // retrieve the details for a selected to-do item and render them in a popup
     function renderDetails(e, todos) {
 
@@ -400,12 +482,20 @@ export const domManipulator = (function () {
         toDosManager.changeCurrentProject(e.target.textContent.toLowerCase());
         console.log(toDosManager.getCurrentProject());
 
-        renderToDos(todos[toDosManager.getCurrentProject()], display);
+        // render all to-dos from all projects if on the home page. otherwise
+        // only render the relevent to-do items
+        if (toDosManager.getCurrentProject() === 'home') {
+            renderAllToDos(todos, display);
+        } else {
+            renderToDos(todos[toDosManager.getCurrentProject()], display);
+        }
+        
         
     }
 
     return {
         renderToDos,
+        renderAllToDos,
         toggleCheckBox,
         activePriority,
         removeActivePriority,
@@ -496,7 +586,14 @@ export const toDosManager = (function () {
         toDoList[project][i].date = (document.querySelector('.edit-popup__date-input')).value;
         toDoList[project][i].priority = (document.querySelector('[name="edit-priority"]:checked')).value;
 
-        domManipulator.renderToDos(toDoList[project], display);
+        // render all to-dos from all projects if on the home page. otherwise
+        // only render the relevent to-do items
+        if (getCurrentProject() === 'home') {
+            domManipulator.renderAllToDos(toDoList, display);
+            console.log(toDoList);
+        } else {
+            domManipulator.renderToDos(toDoList[getCurrentProject()], display);
+        }
 
         overlay.classList.toggle('overlay-edit-invisible');
         form.classList.toggle('edit-popup-open');
@@ -509,6 +606,7 @@ export const toDosManager = (function () {
     function deleteToDo(e, toDoList, display) {
         const element = e.target;
         let i;
+        let project;
         // sometimes the event target is the svg element, other times it is the use element.
         // this ensures i get index of the to-do body item 
         if (element.tagName === 'svg') {
@@ -516,8 +614,30 @@ export const toDosManager = (function () {
         } else if (element.tagName === 'use') {
             i = element.parentElement.parentElement.dataset.index;
         }
-        toDoList.splice(i, 1);
-        domManipulator.renderToDos(toDoList, display);
+
+        // sometimes the event target is the svg element, other times it is the use element.
+        // this ensures i get project of the to-do body item 
+        if (element.tagName === 'svg') {
+            project = element.parentElement.dataset.project;
+        } else if (element.tagName === 'use') {
+            project = element.parentElement.parentElement.dataset.project;
+        }
+
+        
+        
+        // render all to-dos from all projects if on the home page. otherwise
+        // only render the relevent to-do items
+        if (getCurrentProject() === 'home') {
+            // if in home
+            toDoList[project].splice(i, 1);
+            domManipulator.renderAllToDos(toDoList, display);
+            console.log(toDoList);
+        } else {
+            
+            console.log(toDoList);
+            toDoList.splice(i, 1);
+            domManipulator.renderToDos(toDoList, display);
+        }
         
 
         // now we have the index of the dom element to be deleted,
