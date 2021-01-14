@@ -18,18 +18,42 @@ const detailsOverlay = document.querySelector('.overlay-details');
 const editPopup = document.querySelector('.edit-popup');
 const editOverlay = document.querySelector('.overlay-edit');
 const editForm = document.querySelector('.edit-popup');
+// each nav item that displays a different sub array of to-dos
+const toDoFolders = document.querySelectorAll('.todo-folder');
 // todo checkbox
 // const checkBoxes = document.querySelectorAll('.todo__complete');
+
 // array of todo items
-const todos = [];
+// const todos = [];
 
-todos.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "health"));
-todos.push(toDosManager.createToDo("sniff coke", "high", "2021-11-11", "only the good columbian stuff", "lesuire"));
-todos.push(toDosManager.createToDo("scratch nutz", "high", "2021-10-30", " theyre really itchy today", "health"));
-todos.push(toDosManager.createToDo("feed jimmy", "medium", "2021-06-09", "only the finest bickies", "chores"));
+// object of to-do arrays 
+const todos = {
+    "home": [],
+    "today": [],
+    "week": [],
+    "projects": {
+
+    }
+}
+
+todos.home.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "home"));
+todos.home.push(toDosManager.createToDo("sniff coke", "high", "2021-11-11", "only the good columbian stuff", "home"));
+todos.home.push(toDosManager.createToDo("scratch nutz", "high", "2021-10-30", " theyre really itchy today", "home"));
+todos.home.push(toDosManager.createToDo("feed jimmy", "medium", "2021-06-09", "only the finest bickies", "home"));
+
+todos.today.push(toDosManager.createToDo("eat today", "medium", "2021-06-09", "only the finest bickies", "today"));
+todos.week.push(toDosManager.createToDo("eat this week", "medium", "2021-06-09", "only the finest bickies", "week"));
+
+// initial homescreen render
+domManipulator.renderToDos(todos.home, display);
 
 
-domManipulator.renderToDos(todos, display);
+
+
+
+toDoFolders.forEach(folder => {
+    folder.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
+})
 
 
 

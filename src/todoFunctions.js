@@ -21,6 +21,8 @@ export const domManipulator = (function () {
             // give each to-do element a unique value that corresponds to
             // it's data's position in the array
             toDoBody.setAttribute('data-index', i);
+            // set data atrribute to the to-do items project name
+            toDoBody.setAttribute('data-project', `${todo.project}`)
             
             // create to-do item checkbox 
             const toDoCheckBox = document.createElement('div');
@@ -176,10 +178,18 @@ export const domManipulator = (function () {
         // sometimes the event target is the svg element, other times it is the use element.
         // this ensures i get index of the to-do body item 
         let i;
+        let project;
+
         if (element.tagName === 'svg') {
             i = element.parentElement.dataset.index;
         } else if (element.tagName === 'use') {
             i = element.parentElement.parentElement.dataset.index;
+        }
+
+        if (element.tagName === 'svg') {
+            project = element.parentElement.dataset.project;
+        } else if (element.tagName === 'use') {
+            project = element.parentElement.parentElement.dataset.project;
         }
 
         const overlay = document.querySelector('.overlay-edit');
@@ -198,6 +208,8 @@ export const domManipulator = (function () {
         // attatch index to title element so i can grab it when confirming edit
         // and change the array data for that to-do item
         title.dataset.index = i;
+        // attach project name to title element so i can grab it when confirming edits
+        title.dataset.project = project;
 
         // retreive details of todo and display it in a text area
         const details = document.createElement('textarea');
@@ -381,6 +393,17 @@ export const domManipulator = (function () {
         e.target.classList.add(`edit-popup__priority-btn--${priority}-active`);
     }
 
+    // function to handle clicks on the navigation
+    function changeFolder(e, todos, display) {
+        
+        // sets the current folder variable to nav item that was clicked
+        toDosManager.changeCurrentProject(e.target.textContent.toLowerCase());
+        console.log(toDosManager.getCurrentProject());
+
+        renderToDos(todos[toDosManager.getCurrentProject()], display);
+        
+    }
+
     return {
         renderToDos,
         toggleCheckBox,
@@ -388,12 +411,28 @@ export const domManipulator = (function () {
         removeActivePriority,
         editPriority,
         renderDetails,
-        renderEdit
+        renderEdit,
+        changeFolder
     };
 })();
 
 // To Do data manager 
 export const toDosManager = (function () {
+
+    // keep track of what page the user is on, so that added items go
+    // to the correct project. defaults to home page on load
+
+    let currentProject = "home";
+
+    // change currentProject
+    function changeCurrentProject(newProject) {
+        currentProject = newProject;
+    }
+
+    // get currentProject
+    function getCurrentProject() {
+        return currentProject;
+    }
 
     // To-do factory function
     function createToDo(name, priority, date, details, project) {
@@ -417,10 +456,12 @@ export const toDosManager = (function () {
         const toDoDetails = (document.querySelector('#new-todo-details')).value;
         const toDoDate = (document.querySelector('#new-todo-date')).value;
         const toDoPriority = (document.querySelector('[name="create-new-priority"]:checked')).value;
+        // get the current project so can store new to-do item in the correct sub array.
+        const toDoProject = getCurrentProject();
         
-        const newToDo = createToDo(toDoTitle, toDoPriority, toDoDate, toDoDetails);
-        toDoList.push(newToDo);
-        domManipulator.renderToDos(toDoList, display);
+        const newToDo = createToDo(toDoTitle, toDoPriority, toDoDate, toDoDetails, toDoProject);
+        toDoList[toDoProject].push(newToDo);
+        domManipulator.renderToDos(toDoList[toDoProject], display);
         
         // closes the form and removes the overlay after submission
         overlay.classList.toggle('overlay-new-invisible');
@@ -445,14 +486,17 @@ export const toDosManager = (function () {
         e.preventDefault();
         // retrieve the position of the to-do item in the data array
         const i = e.target.firstElementChild.dataset.index;
+        // retrieve the project the to-do was assigned to
+        console.log(e.target.firstElementChild);
+        const project = e.target.firstElementChild.dataset.project;
 
         // update the to-do item data
-        toDoList[i].name = (document.querySelector('.edit-popup__input')).value;
-        toDoList[i].details = (document.querySelector('.edit-popup__input-big')).value;
-        toDoList[i].date = (document.querySelector('.edit-popup__date-input')).value;
-        toDoList[i].priority = (document.querySelector('[name="edit-priority"]:checked')).value;
+        toDoList[project][i].name = (document.querySelector('.edit-popup__input')).value;
+        toDoList[project][i].details = (document.querySelector('.edit-popup__input-big')).value;
+        toDoList[project][i].date = (document.querySelector('.edit-popup__date-input')).value;
+        toDoList[project][i].priority = (document.querySelector('[name="edit-priority"]:checked')).value;
 
-        domManipulator.renderToDos(toDoList, display);
+        domManipulator.renderToDos(toDoList[project], display);
 
         overlay.classList.toggle('overlay-edit-invisible');
         form.classList.toggle('edit-popup-open');
@@ -482,6 +526,8 @@ export const toDosManager = (function () {
     }
 
     return {
+        changeCurrentProject,
+        getCurrentProject,
         createToDo,
         addNewToDo,
         editToDo,
