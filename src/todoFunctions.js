@@ -631,9 +631,10 @@ export const toDosManager = (function () {
             // if in home
             toDoList[project].splice(i, 1);
             domManipulator.renderAllToDos(toDoList, display);
+            // logs the entire to-do object
             console.log(toDoList);
         } else {
-            
+            // logs just the project array
             console.log(toDoList);
             toDoList.splice(i, 1);
             domManipulator.renderToDos(toDoList, display);
