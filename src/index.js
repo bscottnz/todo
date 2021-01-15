@@ -22,6 +22,17 @@ const editForm = document.querySelector('.edit-popup');
 const toDoFolders = document.querySelectorAll('.todo-folder');
 // todo checkbox
 // const checkBoxes = document.querySelectorAll('.todo__complete');
+const createProject = document.querySelector('.create-new__project-submit');
+const projectDisplay = document.querySelector('.projects');
+
+
+const newToDoLink = document.querySelector('#new-todo-link'); 
+const newProjectLink = document.querySelector('#new-project-link'); 
+const newNoteLink = document.querySelector('#new-note-link'); 
+
+const newToDoMenu = document.querySelector('#new-todo-menu');
+const newProjectMenu = document.querySelector('#new-project-menu');
+const newNoteMenu = document.querySelector('#new-note-menu');
 
 // array of todo items
 // const todos = [];
@@ -34,11 +45,11 @@ const todos = {
 }
 
 todos.home.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "home"));
-todos.home.push(toDosManager.createToDo("sniff coke", "high", "2021-11-11", "only the good columbian stuff", "home"));
-todos.home.push(toDosManager.createToDo("scratch nutz", "high", "2021-10-30", " theyre really itchy today", "home"));
+todos.home.push(toDosManager.createToDo("get dressed", "high", "2021-11-11", "singlet cos its hot", "home"));
+todos.home.push(toDosManager.createToDo("scratch foot", "high", "2021-10-30", " theyre really itchy today", "home"));
 todos.home.push(toDosManager.createToDo("feed jimmy", "medium", "2021-06-09", "only the finest bickies", "home"));
 
-todos.today.push(toDosManager.createToDo("eat today", "medium", "2021-06-09", "only the finest bickies", "today"));
+
 todos.today.push(toDosManager.createToDo("get mail", "medium", "2021-06-09", "only the finest bickies", "today"));
 todos.today.push(toDosManager.createToDo("cook dinner", "medium", "2021-06-09", "only the finest bickies", "today"));
 todos.week.push(toDosManager.createToDo("sunday sport", "medium", "2021-06-09", "only the finest bickies", "week"));
@@ -53,6 +64,23 @@ domManipulator.renderAllToDos(todos, display);
 
 toDoFolders.forEach(folder => {
     folder.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
+})
+
+
+// control which form menu is open 
+
+newToDoLink.addEventListener('click', () =>{
+    // turn off other menus
+    newProjectMenu.style.display = "none";
+    // DISPLAY SELECTED MENU
+    newToDoMenu.style.display = "flex";
+})
+
+newProjectLink.addEventListener('click', () =>{
+    // turn off other menus
+    newToDoMenu.style.display = "none";
+    // DISPLAY SELECTED MENU
+    newProjectMenu.style.display = "flex";
 })
 
 
@@ -84,6 +112,11 @@ closeForm.addEventListener('click', () => {
 addToDoForm.addEventListener('submit', e => {
     toDosManager.addNewToDo(e, todos, display, overlayNew, addToDoForm);
 });
+
+// add new poject
+createProject.addEventListener('click', e => {
+    toDosManager.addNewProject(e, todos, overlayNew, addToDoForm, display);
+})
 
 editForm.addEventListener('submit', e => {
     toDosManager.editToDo(e, todos, display, editOverlay, editForm);

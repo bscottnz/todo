@@ -296,7 +296,7 @@ export const domManipulator = (function () {
         // retreive details of todo and display it in a text area
         const details = document.createElement('textarea');
         details.classList.add('edit-popup__input', 'edit-popup__input-big');
-        details.required = true;
+        details.setAttribute("placeholder", "Details:")
         details.textContent = todos[i].details;
 
         // create the elements that make up the date section
@@ -480,7 +480,7 @@ export const domManipulator = (function () {
         
         // sets the current folder variable to nav item that was clicked
         toDosManager.changeCurrentProject(e.target.textContent.toLowerCase());
-        console.log(toDosManager.getCurrentProject());
+        console.log("you are in folder", toDosManager.getCurrentProject());
 
         // render all to-dos from all projects if on the home page. otherwise
         // only render the relevent to-do items
@@ -493,6 +493,36 @@ export const domManipulator = (function () {
         
     }
 
+    // render the project names to the side bar
+    function renderProjectNames(todos, display) {
+        const projectContainer = document.querySelector('.projects');
+        // clear list before appending all items
+        projectContainer.innerHTML = ""
+        
+        // get an object of only the custom projects
+        const projectsObject = Object.assign({}, todos);
+        delete projectsObject.home;
+        delete projectsObject.today;
+        delete projectsObject.week;
+
+        console.log("custom projects", projectsObject);
+
+        // display project names to the sidebar
+        for (const project in projectsObject) {
+
+            const projectName = document.createElement('li');
+            projectName.classList.add('projects__item');
+            projectName.textContent = project;
+
+            // event listner to change working folder / page display
+            projectName.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
+            projectContainer.appendChild(projectName);
+        }
+        
+    }
+
+    
+
     return {
         renderToDos,
         renderAllToDos,
@@ -502,7 +532,8 @@ export const domManipulator = (function () {
         editPriority,
         renderDetails,
         renderEdit,
-        changeFolder
+        changeFolder,
+        renderProjectNames
     };
 })();
 
@@ -523,6 +554,9 @@ export const toDosManager = (function () {
     function getCurrentProject() {
         return currentProject;
     }
+
+   
+
 
     // To-do factory function
     function createToDo(name, priority, date, details, project) {
@@ -551,7 +585,16 @@ export const toDosManager = (function () {
         
         const newToDo = createToDo(toDoTitle, toDoPriority, toDoDate, toDoDetails, toDoProject);
         toDoList[toDoProject].push(newToDo);
-        domManipulator.renderToDos(toDoList[toDoProject], display);
+
+
+        // render all to-dos from all projects if on the home page. otherwise
+        // only render the relevent to-do items
+        if (getCurrentProject() === 'home') {
+            domManipulator.renderAllToDos(toDoList, display);
+            
+        } else {
+            domManipulator.renderToDos(toDoList[getCurrentProject()], display);
+        }
         
         // closes the form and removes the overlay after submission
         overlay.classList.toggle('overlay-new-invisible');
@@ -632,18 +675,70 @@ export const toDosManager = (function () {
             toDoList[project].splice(i, 1);
             domManipulator.renderAllToDos(toDoList, display);
             // logs the entire to-do object
-            console.log(toDoList);
+            // console.log(toDoList);
         } else {
             // logs just the project array
-            console.log(toDoList);
+            // console.log(toDoList);
             toDoList.splice(i, 1);
             domManipulator.renderToDos(toDoList, display);
         }
+
+    }
+
+    // add new project to-dos object
+    function addNewProject(e, todos, overlay, form, display) {
+        const newProject = (document.querySelector('.create-new__project-input')).value;
+        // if text was entered in the input and project doesnt already exist
+        if (newProject && !(newProject.toLowerCase() in todos)) {
+            todos[newProject] = [];
+            // render project names in sidebar
+            // #########################################
+            //code goes here
+            domManipulator.renderProjectNames(todos, display);
+            // #########################################
+
+
+            // sets the current folder variable to nav item that was clicked
+            toDosManager.changeCurrentProject(newProject);
+            console.log("you are in folder", toDosManager.getCurrentProject());
+
+            // render all to-dos from all projects if on the home page. otherwise
+            // only render the relevent to-do items
+            if (toDosManager.getCurrentProject() === 'home') {
+                domManipulator.renderAllToDos(todos, display);
+            } else {
+                domManipulator.renderToDos(todos[toDosManager.getCurrentProject()], display);
+            }
+
+            
+        }
+
+        // closes the form and removes the overlay after submission
+        overlay.classList.toggle('overlay-new-invisible');
+        form.classList.toggle('create-new-open');
+
         
 
-        // now we have the index of the dom element to be deleted,
-        // the corresponding object in the data array can now be deleted.
+        
 
+        
+
+        
+        
+
+        // I want the form to fade out before the input is reset
+        const sleep = (milliseconds) => {
+            return new Promise(resolve => setTimeout(resolve, milliseconds))
+        }
+        
+        sleep(300).then(() => {
+            // clear input after form closes 
+            form.reset();
+            // reset add new form to show add todo
+            document.querySelector('#new-project-menu').style.display = "none";
+        
+            document.querySelector('#new-todo-menu').style.display = "flex";
+    })
     }
 
     return {
@@ -652,6 +747,7 @@ export const toDosManager = (function () {
         createToDo,
         addNewToDo,
         editToDo,
-        deleteToDo
+        deleteToDo,
+        addNewProject
     }
 })();

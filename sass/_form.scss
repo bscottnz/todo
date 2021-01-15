@@ -107,6 +107,9 @@
         flex-direction: column;
 
         border-left: 1px solid $grey-light;
+
+        // temporarilly hide menu
+        // display: none;
         
     }
     // text input
@@ -290,6 +293,69 @@
         &:active {
             outline: none;
         }
+    }
+
+    // window to create new project
+    &__project {
+        
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        border-left: 1px solid $grey-light;
+
+        // default to hidden
+        display: none;
+
+        &-input {
+            width: 100%;
+            border: none;
+    
+            background-color: transparent;
+    
+            color: $color-text;
+            font-size: 1.6rem;
+            font-family: lato, sans-serif;
+    
+            resize: none;
+    
+            &:focus {
+                outline: none;
+            }
+        }
+
+        // submit todo button
+        &-submit {
+        text-align: center;
+        align-self: flex-start;
+
+        padding: .5rem 1rem;
+        border-radius: 3px;
+        border: 1px solid $blue-dark;
+        
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $blue-dark;
+        background-color: transparent;
+        
+        cursor: pointer;
+        transition: all .3s;
+
+        &:hover {
+            color: white;
+            background-color: $blue-dark;
+        }
+
+        &:active {
+            outline: none;
+        }
+    }
+        
+        
+    
     }
 }
 
