@@ -10,6 +10,11 @@ export const domManipulator = (function () {
         // clear out display before redisplaying all to-dos
         element.innerHTML = "" 
         
+        // dont render an empty list
+        if (toDoList.length == 0) {
+            return
+        }
+
         // create a to-do element for each todo stored in the passed array 
         // and append them to the dom element supplied to the function
         toDoList.forEach((todo, i) => {
@@ -482,6 +487,8 @@ export const domManipulator = (function () {
         toDosManager.changeCurrentProject(e.target.textContent.toLowerCase());
         console.log("you are in folder", toDosManager.getCurrentProject());
 
+
+        
         // render all to-dos from all projects if on the home page. otherwise
         // only render the relevent to-do items
         if (toDosManager.getCurrentProject() === 'home') {
@@ -505,7 +512,7 @@ export const domManipulator = (function () {
         delete projectsObject.today;
         delete projectsObject.week;
 
-        console.log("custom projects", projectsObject);
+        // console.log("custom projects", projectsObject);
 
         // display project names to the sidebar
         for (const project in projectsObject) {
@@ -620,7 +627,7 @@ export const toDosManager = (function () {
         // retrieve the position of the to-do item in the data array
         const i = e.target.firstElementChild.dataset.index;
         // retrieve the project the to-do was assigned to
-        console.log(e.target.firstElementChild);
+        
         const project = e.target.firstElementChild.dataset.project;
 
         // update the to-do item data
@@ -683,6 +690,10 @@ export const toDosManager = (function () {
             domManipulator.renderToDos(toDoList, display);
         }
 
+        console.log('del', toDoList)
+        //check if a project is now empty, and delete the project if true
+        checkEmptyProject(toDoList);
+
     }
 
     // add new project to-dos object
@@ -738,7 +749,20 @@ export const toDosManager = (function () {
             document.querySelector('#new-project-menu').style.display = "none";
         
             document.querySelector('#new-todo-menu').style.display = "flex";
-    })
+        })
+    }
+
+    function checkEmptyProject(todos) {
+        
+        
+        // get an object of only the custom projects
+        const projectsObject = Object.assign({}, todos);
+        delete projectsObject.home;
+        delete projectsObject.today;
+        delete projectsObject.week;
+
+        console.log(todos);
+        // logs the todo object when clicking delete from home, otherwise logs the single project todo list
     }
 
     return {
@@ -748,6 +772,7 @@ export const toDosManager = (function () {
         addNewToDo,
         editToDo,
         deleteToDo,
-        addNewProject
+        addNewProject,
+        checkEmptyProject
     }
 })();
