@@ -826,10 +826,10 @@ li {
   height: 60rem;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 6rem auto;
-      grid-template-rows: 6rem auto;
-  -ms-grid-columns: 28rem auto;
-      grid-template-columns: 28rem auto;
+  -ms-grid-rows: 6rem 54rem;
+      grid-template-rows: 6rem 54rem;
+  -ms-grid-columns: 28rem 82rem;
+      grid-template-columns: 28rem 82rem;
   border-radius: 3px;
   -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
           box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.6);
@@ -879,18 +879,48 @@ li {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  border-right: 1px solid #b9b9b9;
   background-color: #eee;
 }
 
-.main {
+.main__container {
+  padding: 4rem;
+  padding-top: 0;
+  padding-bottom: 0;
   -ms-grid-row: 2;
   -ms-grid-row-span: 1;
   grid-row: 2 / 3;
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2 / 3;
-  border-left: 1px solid #b9b9b9;
-  padding: 4rem;
+  overflow-y: auto;
+  background-color: #f7f7f7;
+  border-bottom: 4rem solid #f7f7f7;
+  border-top: 4rem solid #f7f7f7;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+.main__container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main__container::-webkit-scrollbar-track {
+  background: #f7f7f7;
+}
+
+.main__container::-webkit-scrollbar-thumb {
+  background: #c38d9e;
+  border-radius: 5px;
+}
+
+.main__container::-webkit-scrollbar-thumb:hover {
+  background: rgba(80, 31, 58, 0.8);
+}
+
+.main {
   background-color: #f7f7f7;
 }
 
@@ -1048,9 +1078,16 @@ li {
 
 .projects {
   margin-left: 4rem;
+  margin-right: -4rem;
   margin-top: 1rem;
+  max-height: 15rem;
+  overflow: auto;
   font-size: 1.6rem;
   list-style: none;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 
 .projects__item {
@@ -1066,6 +1103,23 @@ li {
 
 .projects__item:not(:last-child) {
   margin-bottom: 1rem;
+}
+
+.projects::-webkit-scrollbar {
+  width: 6px;
+}
+
+.projects::-webkit-scrollbar-track {
+  background: #f7f7f7;
+}
+
+.projects::-webkit-scrollbar-thumb {
+  background: #c38d9e;
+  border-radius: 5px;
+}
+
+.projects::-webkit-scrollbar-thumb:hover {
+  background: rgba(80, 31, 58, 0.8);
 }
 
 .new-todo {

@@ -5,7 +5,12 @@ import { el } from "date-fns/locale";
 export const domManipulator = (function () {
 
     // displays all todos stored in array to the dom
-    function renderToDos(toDoList, element) {
+    function renderToDos(todos, element) {
+
+        // grab relevent todo items
+        const toDoList = todos[toDosManager.getCurrentProject()];
+        // console.log(toDoList);
+        
 
         // clear out display before redisplaying all to-dos
         element.innerHTML = "" 
@@ -71,7 +76,7 @@ export const domManipulator = (function () {
             const toDoDelete = document.createElementNS("http://www.w3.org/2000/svg", "svg");
             toDoDelete.classList.add('todo__icon');
             toDoDelete.classList.add('todo__icon-bin');
-            toDoDelete.addEventListener('click', e => toDosManager.deleteToDo(e, toDoList, element));
+            toDoDelete.addEventListener('click', e => toDosManager.deleteToDo(e, todos, element));
             const use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
             use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../img/icons.svg#icon-bin')
             toDoDelete.appendChild(use2);
@@ -488,13 +493,15 @@ export const domManipulator = (function () {
         console.log("you are in folder", toDosManager.getCurrentProject());
 
 
+
         
         // render all to-dos from all projects if on the home page. otherwise
         // only render the relevent to-do items
         if (toDosManager.getCurrentProject() === 'home') {
             renderAllToDos(todos, display);
         } else {
-            renderToDos(todos[toDosManager.getCurrentProject()], display);
+            
+            renderToDos(todos, display);
         }
         
         
@@ -525,6 +532,10 @@ export const domManipulator = (function () {
             projectName.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
             projectContainer.appendChild(projectName);
         }
+
+        // scroll to bottom of project names after a new one has been added
+        const projectsDiv = document.querySelector('.projects');
+        projectsDiv.scrollTop = projectsDiv.scrollHeight;
         
     }
 
@@ -600,7 +611,7 @@ export const toDosManager = (function () {
             domManipulator.renderAllToDos(toDoList, display);
             
         } else {
-            domManipulator.renderToDos(toDoList[getCurrentProject()], display);
+            domManipulator.renderToDos(toDoList, display);
         }
         
         // closes the form and removes the overlay after submission
@@ -642,7 +653,7 @@ export const toDosManager = (function () {
             domManipulator.renderAllToDos(toDoList, display);
             console.log(toDoList);
         } else {
-            domManipulator.renderToDos(toDoList[getCurrentProject()], display);
+            domManipulator.renderToDos(toDoList, display);
         }
 
         overlay.classList.toggle('overlay-edit-invisible');
@@ -684,15 +695,17 @@ export const toDosManager = (function () {
             // logs the entire to-do object
             // console.log(toDoList);
         } else {
+            // console.log(toDoList[toDosManager.getCurrentProject()]);
             // logs just the project array
-            // console.log(toDoList);
-            toDoList.splice(i, 1);
+            
+            toDoList[toDosManager.getCurrentProject()].splice(i, 1);
+            
             domManipulator.renderToDos(toDoList, display);
         }
 
-        console.log('del', toDoList)
+        // console.log('del', toDoList)
         //check if a project is now empty, and delete the project if true
-        checkEmptyProject(toDoList);
+        checkEmptyProject(toDoList, display);
 
     }
 
@@ -718,9 +731,23 @@ export const toDosManager = (function () {
             if (toDosManager.getCurrentProject() === 'home') {
                 domManipulator.renderAllToDos(todos, display);
             } else {
-                domManipulator.renderToDos(todos[toDosManager.getCurrentProject()], display);
+                domManipulator.renderToDos(todos, display);
             }
 
+          // if the created project already exists, change folder to that project  
+        } else if (newProject && (newProject.toLowerCase() in todos)) {
+
+            // render all to-dos from all projects if on the home page. otherwise
+            // only render the relevent to-do items
+            if (newProject.toLowerCase() === 'home') {
+                console.log(`${newProject} already exists. changing folder to ${newProject}`);
+                changeCurrentProject(newProject.toLowerCase());
+                domManipulator.renderAllToDos(todos, display);
+            } else {
+                console.log(`${newProject} already exists. changing folder to ${newProject}`);
+                changeCurrentProject(newProject.toLowerCase());
+                domManipulator.renderToDos(todos, display);
+            }
             
         }
 
@@ -752,7 +779,7 @@ export const toDosManager = (function () {
         })
     }
 
-    function checkEmptyProject(todos) {
+    function checkEmptyProject(todos, display) {
         
         
         // get an object of only the custom projects
@@ -761,8 +788,20 @@ export const toDosManager = (function () {
         delete projectsObject.today;
         delete projectsObject.week;
 
-        console.log(todos);
-        // logs the todo object when clicking delete from home, otherwise logs the single project todo list
+        console.log(projectsObject);
+
+        for (const project in projectsObject) {
+            console.log(project);
+            console.log(projectsObject[project]);
+            console.log(projectsObject[project].length);
+            if (projectsObject[project].length < 1) {
+                delete todos[project];
+                domManipulator.renderProjectNames(todos, display);
+            }
+        }
+
+        
+        
     }
 
     return {

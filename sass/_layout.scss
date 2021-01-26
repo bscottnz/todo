@@ -7,8 +7,8 @@
     width: 110rem;
     height: 60rem;
     display: grid;
-    grid-template-rows: 6rem auto;
-    grid-template-columns: 28rem auto;
+    grid-template-rows: 6rem 54rem;
+    grid-template-columns: 28rem 82rem;
     border-radius: 3px;
     
     box-shadow: 0 2rem 4rem rgba(0,0,0,0.6);
@@ -41,16 +41,55 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-right: 1px solid $grey-light;
 
     background-color: $cream;
 }
 
-// main area of the app where the to-do items are displayed
-.main {
+// container around main so that overflow doesnt leak into the padding
+.main__container {
+    padding: 4rem;
+    padding-top: 0;
+    padding-bottom: 0;
     grid-row: 2 / 3;
     grid-column: 2 / 3;
-    border-left: 1px solid $grey-light;
-    padding: 4rem;
+    
+    overflow-y: auto;
+
+    background-color: $cream-light;
+
+    // i couldnt get overflow hidden to work for some reason on the top + bottom,
+    // so this fixes that
+    border-bottom: 4rem solid $cream-light;
+    border-top: 4rem solid $cream-light;
+
+
+    // custom scrollbar
+    /* width */
+    &::-webkit-scrollbar {
+    width: 6px;
+    }
+  
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: $cream-light;
+    }
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $purple-light;
+        border-radius: 5px;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgba($purple, .8);
+    }
+}
+
+// main area of the app where the to-do items are displayed
+.main {
+    
 
     background-color: $cream-light; 
 }

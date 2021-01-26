@@ -61,7 +61,10 @@
 // projects sub list
 .projects {
     margin-left: 4rem;
+    margin-right: -4rem;
     margin-top: 1rem;
+    max-height: 15rem;
+    overflow: auto;
 
     font-size: 1.6rem;
 
@@ -83,6 +86,28 @@
             margin-bottom: 1rem;
         }
     }
+
+    // custom scrollbar
+    /* width */
+    &::-webkit-scrollbar {
+        width: 6px;
+        }
+      
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: $cream-light;
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: $purple-light;
+            border-radius: 5px;
+        }
+        
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba($purple, .8);
+        }
 }
 
 // button to create new todo / project / note

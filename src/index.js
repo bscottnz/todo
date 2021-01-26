@@ -41,7 +41,13 @@ const newNoteMenu = document.querySelector('#new-note-menu');
 const todos = {
     "home": [],
     "today": [],
-    "week": []   
+    "week": [],
+    "gym":[],
+    "gym2":[],
+    "gym3":[],
+    "gym4":[],
+    "gym5":[],
+    "gym6":[]   
 }
 
 todos.home.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "home"));
@@ -55,8 +61,17 @@ todos.today.push(toDosManager.createToDo("cook dinner", "medium", "2021-06-09", 
 todos.week.push(toDosManager.createToDo("sunday sport", "medium", "2021-06-09", "only the finest bickies", "week"));
 todos.week.push(toDosManager.createToDo("drop letter at freds", "medium", "2021-06-09", "only the finest bickies", "week"));
 
+todos.gym.push(toDosManager.createToDo("gym 1", "medium", "2021-06-09", "only the finest bickies", "gym"));
+todos.gym.push(toDosManager.createToDo("gym 2", "medium", "2021-06-09", "only the finest bickies", "gym"));
+todos.gym.push(toDosManager.createToDo("gym 3", "medium", "2021-06-09", "only the finest bickies", "gym"));
+
 // initial homescreen render
 domManipulator.renderAllToDos(todos, display);
+domManipulator.renderProjectNames(todos, display);
+
+// scroll to top of project names on page load
+const projectsDiv = document.querySelector('.projects');
+projectsDiv.scrollTop = 0;
 
 
 
