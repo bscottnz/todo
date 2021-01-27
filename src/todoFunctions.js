@@ -39,7 +39,7 @@ export const domManipulator = (function () {
             // create to-do item checkbox 
             const toDoCheckBox = document.createElement('div');
             toDoCheckBox.classList.add('todo__complete');
-            toDoCheckBox.addEventListener('click', e => toggleCheckBox(e, todos));
+            toDoCheckBox.addEventListener('click', e => toggleCheckBox(e, todos, element));
             
             // create to-do item title
             const toDoTitle = document.createElement('div');
@@ -129,7 +129,7 @@ export const domManipulator = (function () {
                 // create to-do item checkbox 
                 const toDoCheckBox = document.createElement('div');
                 toDoCheckBox.classList.add('todo__complete');
-                toDoCheckBox.addEventListener('click', e => toggleCheckBox(e, toDoObject));
+                toDoCheckBox.addEventListener('click', e => toggleCheckBox(e, toDoObject, element));
                 
                 // create to-do item title
                 const toDoTitle = document.createElement('div');
@@ -454,7 +454,7 @@ export const domManipulator = (function () {
     }
 
     // applies modified styling to each element of a checked off to-do item 
-    function toggleCheckBox(e, toDoObject) {
+    function toggleCheckBox(e, toDoObject, display) {
 
         // grabs all sibling elements of the clicked checkbox
         const toDo = e.target.parentElement;
@@ -481,6 +481,9 @@ export const domManipulator = (function () {
     
         // save todos to local storage
         localStorage.setItem("todos", JSON.stringify(toDoObject));
+
+        // update project count
+        renderProjectNames(toDoObject, display)
         
     }
 
@@ -552,6 +555,14 @@ export const domManipulator = (function () {
             
             renderToDos(todos, display);
         }
+
+        // if changing to a new empty custom project, display placeholder screen
+        if (!['home', 'week', 'today'].includes(toDosManager.getCurrentProject())) {
+            if (todos[toDosManager.getCurrentProject()].length < 1) {
+                renderEmptyProjectPlaceholder(todos, display);
+            }
+        }
+        
         
         
     }
@@ -570,22 +581,90 @@ export const domManipulator = (function () {
 
         // console.log("custom projects", projectsObject);
 
-        // display project names to the sidebar
+        // display project names and counts to the sidebar
         for (const project in projectsObject) {
 
-            const projectName = document.createElement('li');
-            projectName.classList.add('projects__item');
-            projectName.textContent = project;
+            // container around project name and count
+            const projectNameCount = document.createElement('li');
+            projectNameCount.classList.add('projects__item');
+            projectNameCount.classList.add('custom-project-count-container');
 
+            // project name
+            const projectName = document.createElement('span');
+            projectName.classList.add('todo-folder');
+            projectName.classList.add('project-name');
+            projectName.textContent = project;
             // event listner to change working folder / page display
             projectName.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
-            projectContainer.appendChild(projectName);
+
+            // project count
+            const projectCount = document.createElement('div');
+            projectCount.classList.add('project-count');
+
+            // count how many non checked items there are in the project
+            // and assign this value to the count value
+            let n = 0;
+            projectsObject[project].forEach(todo => {
+                if(!todo.checked) {
+                    n++
+                }
+            })
+
+            
+            projectCount.textContent = n;
+
+            projectNameCount.appendChild(projectName);
+            // only show count if greater than 0
+            if (n > 0) {
+                projectNameCount.appendChild(projectCount);
+            }
+            
+            projectContainer.appendChild(projectNameCount);
         }
 
-        // // scroll to bottom of project names after a new one has been added
-        // const projectsDiv = document.querySelector('.projects');
-        // projectsDiv.scrollTop = projectsDiv.scrollHeight;
+
+        // update home / today / week folders. only count non checked items
+        const homeCount = document.querySelector('.home-count');
+        // sums number of non checked item in project array and displays count text as this sum
+        homeCount.textContent = todos.home.reduce((total, value) => {
+            return total + !value.checked;
+        }, 0);
+        // re-set count display
+        homeCount.style.display = 'inline-flex';
+        if (homeCount.textContent < 1) {
+            // hide count display if 0
+            homeCount.style.display = 'none';
+        }
+
+        const weekCount = document.querySelector('.week-count');
+        // sums number of non checked item in project array and displays count text as this sum
+        weekCount.textContent = todos.week.reduce((total, value) => {
+            return total + !value.checked;
+        }, 0);
+        // re-set count display
+        weekCount.style.display = 'inline-flex';
+        if (weekCount.textContent < 1) {
+            // hide count display if 0
+            weekCount.style.display = 'none';
+        }
         
+        const todayCount = document.querySelector('.today-count');
+        // sums number of non checked item in project array and displays count text as this sum
+        todayCount.textContent = todos.today.reduce((total, value) => {
+            return total + !value.checked;
+        }, 0);
+        // re-set count display
+        todayCount.style.display = 'inline-flex';
+        if (todayCount.textContent < 1) {
+            // hide count display if 0
+            todayCount.style.display = 'none';
+        }
+        
+    }
+
+    // display the amount of todo items next to the project title
+    function renderProjectCount(todos, display) {
+
     }
 
     // scroll poject names to top
@@ -598,6 +677,40 @@ export const domManipulator = (function () {
     function projectNamesScrollBottom() {
         const projectsDiv = document.querySelector('.projects');
         projectsDiv.scrollTop = projectsDiv.scrollHeight;
+    }
+
+    function renderEmptyProjectPlaceholder(todos, display) {
+        document.querySelector('.main').innerHTML = 
+        `<div class="add-or-remove">
+            <div class="add-or-remove__heading">Empty Project!</div>
+            <div class="add-or-remove__content">
+                <div class="add-or-remove__content-text">
+                    Create a new to-do item or delete project.
+                </div>
+                <div class="add-or-remove__content-btn">
+                    Delete Project
+                </div>
+            </div>
+        </div>`
+
+        
+        // remove project button
+        document.querySelector('.add-or-remove__content-btn').addEventListener("click", () => {
+            
+            // delete project from todos data
+            delete todos[toDosManager.getCurrentProject()];
+            
+            document.querySelector('.main').innerHTML = "";
+            // save todos to local storage
+            localStorage.setItem("todos", JSON.stringify(todos));
+            renderProjectNames(todos, display);
+            // change folder to home
+            toDosManager.changeCurrentProject('home');
+            renderAllToDos(todos, display);
+
+            
+
+        })
     }
 
     
@@ -614,8 +727,10 @@ export const domManipulator = (function () {
         renderEdit,
         changeFolder,
         renderProjectNames,
+        renderProjectCount,
         projectNamesScrollTop,
-        projectNamesScrollBottom
+        projectNamesScrollBottom,
+        renderEmptyProjectPlaceholder
     };
 })();
 
@@ -694,6 +809,9 @@ export const toDosManager = (function () {
             // removes active status from all buttons
             domManipulator.removeActivePriority();
         })
+
+        // update project name counter 
+        domManipulator.renderProjectNames(toDoList, display);
     }
 
     // edit selected todo data
@@ -773,6 +891,8 @@ export const toDosManager = (function () {
         checkEmptyProject(toDoList, display);
         // save todos to local storage
         localStorage.setItem("todos", JSON.stringify(toDoList));
+        // update project name counter 
+        domManipulator.renderProjectNames(toDoList, display);
 
     }
 
@@ -824,14 +944,6 @@ export const toDosManager = (function () {
         overlay.classList.toggle('overlay-new-invisible');
         form.classList.toggle('create-new-open');
 
-        
-
-        
-
-        
-
-        
-        
 
         // I want the form to fade out before the input is reset
         const sleep = (milliseconds) => {
@@ -846,6 +958,9 @@ export const toDosManager = (function () {
         
             document.querySelector('#new-todo-menu').style.display = "flex";
         })
+
+        // show a placeholder screen after a new empty project has been created
+        domManipulator.renderEmptyProjectPlaceholder(todos, display);
     }
 
     function checkEmptyProject(todos, display) {
@@ -861,11 +976,14 @@ export const toDosManager = (function () {
         if (!['home', 'week', 'today'].includes(getCurrentProject())) {
             // deletes only the current empty project
             if (projectsObject[getCurrentProject()].length < 1) {
+                
                 delete todos[getCurrentProject()];
                 domManipulator.renderProjectNames(todos, display);
-                // scroll to top of projects
-                // const projectsDiv = document.querySelector('.projects');
-                // projectsDiv.scrollTop = 0;
+                
+                // change folder to home
+                
+                changeCurrentProject('home');
+                domManipulator.renderAllToDos(todos, display);
             }
         }
         

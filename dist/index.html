@@ -165,15 +165,15 @@
         <nav class="side-bar">
 
             <ul class="nav">
-                <li class="nav__item nav__selected todo-folder">Home <span class="home-count">0</span></li>
-                <li class="nav__item todo-folder">Today <span class="today-count">0</span></li>
-                <li class="nav__item todo-folder">Week <span class="week-count">0</span></li>
+                <li class="nav__item project-count-container nav__selected"><span class="project-name todo-folder">Home</span><span class="home-count">1</span></li>
+                <li class="nav__item project-count-container"><span class="project-name todo-folder">Today</span><span class="today-count">0</span></li>
+                <li class="nav__item project-count-container"><span class="project-name todo-folder">Week</span><span class="week-count">0</span></li>
                 <li class="nav__item nav__item--projects">
                     <span class="nav__item--projects-title">Projects</span>
                     <ul class="projects">
-                        <!-- <li class="projects__item todo-folder">Work</li>
-                        <li class="projects__item todo-folder">Gym</li>
-                        <li class="projects__item todo-folder">Study</li> -->
+                        <!-- <li class="projects__item custom-project-count-container"><span class="project-name todo-folder">Work</span><span class="project-count">1</span></li>
+                        <li class="projects__item custom-project-count-container"><span class="project-name todo-folder">Gym</span><span class="project-count">3</span></li>
+                        <li class="projects__item custom-project-count-container"><span class="project-name todo-folder">Study</span><span class="project-count">2</span></li> -->
                     </ul>
                 </li>
                 <li class="nav__item">Notes</li>
@@ -281,6 +281,17 @@
                     </svg>
                     
                 </div> -->
+                <div class="add-or-remove">
+                    <div class="add-or-remove__heading">Empty Project!</div>
+                    <div class="add-or-remove__content">
+                        <div class="add-or-remove__content-text">
+                            Create a new to-do item or
+                        </div>
+                        <div class="add-or-remove__content-btn">
+                            Delete Project
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
 

@@ -16,7 +16,7 @@
         padding: .5rem 1.5rem;
         border-left: 3px solid transparent;
 
-        cursor: pointer;
+        
 
         &:hover {
             border-left: 3px solid $purple-light;
@@ -38,7 +38,7 @@
                 border-left: 3px solid transparent;
                 border-radius: 3px;
 
-                cursor: pointer;
+                
 
                 &:hover {
                     border-left: 3px solid $purple-light;
@@ -64,9 +64,12 @@
     margin-right: -4rem;
     margin-top: 1rem;
     max-height: 15rem;
-    overflow: auto;
+    overflow: hidden;
+    overflow-y: overlay;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 
-    font-size: 1.6rem;
+    font-size: 1.7rem;
 
     list-style: none;
     
@@ -74,8 +77,10 @@
     &__item {
         padding: .4rem .8rem;
         border-left: 3px solid transparent;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
 
-        cursor: pointer;
+        
 
         &:hover {
             border-left: 3px solid $purple-light;
@@ -91,6 +96,7 @@
     /* width */
     &::-webkit-scrollbar {
         width: 6px;
+        
         }
       
         /* Track */
@@ -134,4 +140,50 @@
         transform: translateY(2px);
         box-shadow: .1rem .3rem .5rem rgba(0,0,0,.4);
     }
+}
+
+// cirlce with number of items in each project
+.home-count,
+.today-count,
+.week-count,
+.project-count {
+    // margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid $purple-light;
+    background-color: $purple-light;
+    border-radius: 50%;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $cream-light;
+}
+
+// cirlce with number of items in each custom project
+.project-count {
+    margin-right: 4.6rem;
+}
+
+.project-name {
+    cursor: pointer;
+    max-width: 60%;
+    
+}
+
+// container around the home / week / today project name and count
+.project-count-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// container around custom project names and count
+.custom-project-count-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
