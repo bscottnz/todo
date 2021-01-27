@@ -38,32 +38,37 @@ const newNoteMenu = document.querySelector('#new-note-menu');
 // const todos = [];
 
 // object of to-do arrays 
-const todos = {
-    "home": [],
-    "today": [],
-    "week": [],
-    "gym":[],
-    "gym2":[],
-    "gym3":[],
-    "gym4":[],
-    "gym5":[],
-    "gym6":[]   
+// grab object data from local storage if it exists, or create new example object
+const todos = JSON.parse(localStorage.getItem('todos')) || {
+                                                            "home": [],
+                                                            "today": [],
+                                                            "week": [],
+                                                            "gym":[],
+                                                            "gym2":[],
+                                                            "gym3":[],
+                                                            "gym4":[],
+                                                            "gym5":[],
+                                                            "gym6":[]   
+                                                            }
+
+// if there is no local storage, populate todo list object with example items
+if (!localStorage.getItem('todos')) {
+    todos.home.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "home"));
+    todos.home.push(toDosManager.createToDo("get dressed", "high", "2021-11-11", "singlet cos its hot", "home"));
+    todos.home.push(toDosManager.createToDo("scratch foot", "high", "2021-10-30", " theyre really itchy today", "home"));
+    todos.home.push(toDosManager.createToDo("feed jimmy", "medium", "2021-06-09", "only the finest bickies", "home"));
+
+
+    todos.today.push(toDosManager.createToDo("get mail", "medium", "2021-06-09", "only the finest bickies", "today"));
+    todos.today.push(toDosManager.createToDo("cook dinner", "medium", "2021-06-09", "only the finest bickies", "today"));
+    todos.week.push(toDosManager.createToDo("sunday sport", "medium", "2021-06-09", "only the finest bickies", "week"));
+    todos.week.push(toDosManager.createToDo("drop letter at freds", "medium", "2021-06-09", "only the finest bickies", "week"));
+
+    todos.gym.push(toDosManager.createToDo("gym 1", "medium", "2021-06-09", "only the finest bickies", "gym"));
+    todos.gym.push(toDosManager.createToDo("gym 2", "medium", "2021-06-09", "only the finest bickies", "gym"));
+    todos.gym.push(toDosManager.createToDo("gym 3", "medium", "2021-06-09", "only the finest bickies", "gym"));
 }
 
-todos.home.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "home"));
-todos.home.push(toDosManager.createToDo("get dressed", "high", "2021-11-11", "singlet cos its hot", "home"));
-todos.home.push(toDosManager.createToDo("scratch foot", "high", "2021-10-30", " theyre really itchy today", "home"));
-todos.home.push(toDosManager.createToDo("feed jimmy", "medium", "2021-06-09", "only the finest bickies", "home"));
-
-
-todos.today.push(toDosManager.createToDo("get mail", "medium", "2021-06-09", "only the finest bickies", "today"));
-todos.today.push(toDosManager.createToDo("cook dinner", "medium", "2021-06-09", "only the finest bickies", "today"));
-todos.week.push(toDosManager.createToDo("sunday sport", "medium", "2021-06-09", "only the finest bickies", "week"));
-todos.week.push(toDosManager.createToDo("drop letter at freds", "medium", "2021-06-09", "only the finest bickies", "week"));
-
-todos.gym.push(toDosManager.createToDo("gym 1", "medium", "2021-06-09", "only the finest bickies", "gym"));
-todos.gym.push(toDosManager.createToDo("gym 2", "medium", "2021-06-09", "only the finest bickies", "gym"));
-todos.gym.push(toDosManager.createToDo("gym 3", "medium", "2021-06-09", "only the finest bickies", "gym"));
 
 // initial homescreen render
 domManipulator.renderAllToDos(todos, display);

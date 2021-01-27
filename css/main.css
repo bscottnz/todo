@@ -1110,7 +1110,7 @@ li {
 }
 
 .projects::-webkit-scrollbar-track {
-  background: #f7f7f7;
+  background: #eee;
 }
 
 .projects::-webkit-scrollbar-thumb {
