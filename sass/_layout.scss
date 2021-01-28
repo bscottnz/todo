@@ -8,11 +8,11 @@
     height: 60rem;
     display: grid;
     grid-template-rows: 6rem 54rem;
-    grid-template-columns: 28rem 82rem;
+    grid-template-columns: 28rem 1fr;
     border-radius: 3px;
     
     box-shadow: 0 2rem 4rem rgba(0,0,0,0.6);
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 // header that contains the logo

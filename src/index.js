@@ -1,6 +1,6 @@
 // import {toDosManager, domManipulator} from "./todoItemFunctions.js"
 
-import {toDosManager, domManipulator} from "./todoFunctions.js"
+import {toDosManager, domManipulator, notesManager} from "./todoFunctions.js"
 // import {domManipulatorCreator} from "./domManipulator.js"
 
 // const domManipulator = domManipulatorCreator();
@@ -51,6 +51,13 @@ const todos = JSON.parse(localStorage.getItem('todos')) || {
                                                             "gym6":[]   
                                                             }
 
+const notes = [];
+
+notes.push(notesManager.createNote("books", 'go get some books'));
+notes.push(notesManager.createNote("books2", 'go get some more books'));
+
+console.log(notes);
+
 // if there is no local storage, populate todo list object with example items
 if (!localStorage.getItem('todos')) {
     todos.home.push(toDosManager.createToDo("brush teef", "low", "2021-12-12", " with colgate", "home"));
@@ -71,8 +78,10 @@ if (!localStorage.getItem('todos')) {
 
 
 // initial homescreen render
-domManipulator.renderAllToDos(todos, display);
+// domManipulator.renderAllToDos(todos, display);
 domManipulator.renderProjectNames(todos, display);
+// temporary grid render
+notesManager.arrangeNotes(notes);
 
 // scroll to top of project names on page load
 const projectsDiv = document.querySelector('.projects');
@@ -167,4 +176,12 @@ closeEdit.addEventListener('click', () => {
 
 
 
+notes.push(notesManager.createNote("books3", 'go get some more bookssssssssss sssssssssss'));
+notesManager.arrangeNotes(notes);
+notes.push(notesManager.createNote("books4", 'go get some more bookssssssssss sssssssssss dfsd dfsd dfsdfsdfdsfds dfsdf dfsdfsdfs'));
+notesManager.arrangeNotes(notes);
+notes.push(notesManager.createNote("books5", 'go get some more bookssssssssss sssssssssss fdsf'));
+notesManager.arrangeNotes(notes);
+notes.push(notesManager.createNote("books6", 'go get some more bookssssssssss sssssssssss fsdfs fds dfs dfdfsdfsd'));
+notesManager.arrangeNotes(notes);
 

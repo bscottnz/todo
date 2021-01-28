@@ -1,0 +1,117 @@
+// ########################################
+// notes section
+// ########################################
+
+// grid that contains notes
+.grid {
+    display: flex;
+
+    // grid columns
+     &-col {
+        // flex would not word wrap, and long words woul make the column really wide
+        // flex: 1;
+        width: 33.33%;
+        padding: 0 10px;
+
+
+        &--1 {
+            padding-left: 0;
+
+            // first note of each column should have no top margin
+            .note:first-child {
+                margin-top: 0;
+            }
+        }
+
+        &--2 {
+            // first note of each column should have no top margin
+            .note:first-child {
+                margin-top: 0;
+            }
+        }
+
+        &--3 {
+            padding-right: 0;
+
+            // first note of each column should have no top margin
+            .note:first-child {
+                margin-top: 0;
+            }
+        }
+     }
+}
+
+// testing media queary
+@media (max-width: 1180px) {
+    .grid-col--2 {
+        display: none;
+    }
+
+    .grid-col {
+        width: 50%;
+    }
+}
+
+// single note item
+.note {
+
+    position: relative;
+
+    display: inline-block;
+    width: 100%;
+    height: fit-content;
+    padding: 2rem;
+    margin-top: 20px;
+
+    background-color: $cream;
+    border-radius: 4px;
+
+    font-weight: 300;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    
+    &__title,
+    &__text {
+        height: auto;
+        display: inline-block;
+        width: 100%;
+        border: none;
+        
+        background-color: transparent;
+
+        color: $color-text;
+        font-size: 1.6rem;
+        font-family: lato, sans-serif;
+    
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__title {
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+
+    }
+
+    // &:hover {
+    //     transform: scale(1.003);
+    //     transform-origin: 50% 50%;
+    //     box-shadow: 3px 3px 5px 2px rgba(0,0,0,.2);
+    //     transition: all .2s ease-out;
+    // }
+
+    // close icon
+    &__close {
+        position: absolute;
+        top: 7px;
+        right: 8px;
+
+        font-weight: 700;
+        line-height: 1;
+        font-size: 20px;
+        color: $purple;
+    }
+
+
+}

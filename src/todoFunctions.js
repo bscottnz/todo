@@ -1,5 +1,7 @@
 import {format} from "date-fns"
 import { el } from "date-fns/locale";
+import Colcade from 'colcade'
+
 
 // DOM manipulation object 
 export const domManipulator = (function () {
@@ -1012,5 +1014,94 @@ export const toDosManager = (function () {
         deleteToDo,
         addNewProject,
         checkEmptyProject
+    }
+})();
+
+// To Do data manager 
+export const notesManager = (function () {
+
+    var colc;
+    
+
+    function arrangeNotes(notes) {
+
+        
+        const grid = document.querySelector('.grid');
+        
+
+    
+        // if there is a colc grid already built, delete it so can make a new one
+        if (typeof colc !== 'undefined') {
+            colc.destroy();
+            grid.innerHTML = `<div class="grid-col grid-col--1">
+
+                                  </div>
+                                  <div class="grid-col grid-col--2">
+
+                                  </div>
+                                  <div class="grid-col grid-col--3">
+
+                              </div>`;
+
+        }
+
+        colc = new Colcade( '.grid', {
+            columns: '.grid-col',
+            items: '.note'
+            });
+
+        
+
+        // create note elements and append to colc
+        notes.forEach(note => {
+
+            const noteBody = document.createElement('div');
+            noteBody.classList.add('note');
+
+            const noteClose = document.createElement('div');
+            noteClose.classList.add('note__close');
+            noteClose.innerHTML = '&times;';
+
+            const noteTitle = document.createElement('div');
+            noteTitle.classList.add('note__title');
+            noteTitle.textContent = note.title;
+            noteTitle.setAttribute('contenteditable', 'true');
+            noteTitle.setAttribute('spellcheck', 'false');
+
+            const noteText = document.createElement('div');
+            noteText.classList.add('note__text');
+            noteText.textContent = note.text;
+            noteText.setAttribute('contenteditable', 'true');
+            noteText.setAttribute('spellcheck', 'false');
+
+            noteBody.appendChild(noteClose);
+            noteBody.appendChild(noteTitle);
+            noteBody.appendChild(noteText);
+
+            colc.append(noteBody);
+            
+
+
+        })
+
+        
+        
+
+
+
+    }
+
+    function createNote(title, text) {
+        return {
+            title,
+            text
+        }
+    }
+
+    
+
+    return {
+        arrangeNotes,
+        createNote
     }
 })();
