@@ -82,6 +82,7 @@
         color: $color-text;
         font-size: 1.6rem;
         font-family: lato, sans-serif;
+        white-space: pre-wrap;
     
         &:focus {
             outline: none;

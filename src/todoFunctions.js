@@ -1193,6 +1193,7 @@ export const notesManager = (function () {
         } else if (toEdit ==="text") {
             notes[i].text = newText;
         }
+        // console.log('editing note');
 
         // save notes to local storage
         localStorage.setItem("notes", JSON.stringify(notes));

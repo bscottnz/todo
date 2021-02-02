@@ -1420,6 +1420,7 @@ li {
   color: #141414;
   font-size: 1.6rem;
   font-family: lato, sans-serif;
+  white-space: pre-wrap;
 }
 
 .note__title:focus, .note__text:focus {
