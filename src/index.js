@@ -23,6 +23,7 @@ const toDoFolders = document.querySelectorAll('.todo-folder');
 // todo checkbox
 // const checkBoxes = document.querySelectorAll('.todo__complete');
 const createProject = document.querySelector('.create-new__project-submit');
+const createNote = document.querySelector('.create-new__note-submit');
 const projectDisplay = document.querySelector('.projects');
 
 
@@ -50,13 +51,25 @@ const todos = JSON.parse(localStorage.getItem('todos')) || {
                                                             "gym5":[],
                                                             "gym6":[]   
                                                             }
+// array of to-do notes 
+// grab array data from local storage if it exists, or create new example array
+const notes = JSON.parse(localStorage.getItem('notes')) || [];
 
-const notes = [];
+// if there is no local storage, populate notes list object with example items
+if (!localStorage.getItem('notes')) {
+    notes.push(notesManager.createNote("books", 'go get some books'));
+    notes.push(notesManager.createNote("books2", 'go get some more books'));
+    notes.push(notesManager.createNote("books3", 'go get some more bookssssssssss sssssssssss'));
+    notesManager.arrangeNotes(notes);
+    notes.push(notesManager.createNote("books4", 'go get some more bookssssssssss sssssssssss dfsd dfsd dfsdfsdfdsfds dfsdf dfsdfsdfs'));
+    notesManager.arrangeNotes(notes);
+    notes.push(notesManager.createNote("books5", 'go get some more bookssssssssss sssssssssss fdsf'));
+    notesManager.arrangeNotes(notes);
+    notes.push(notesManager.createNote("books6", 'go get some more bookssssssssss sssssssssss fsdfs fds dfs dfdfsdfsd'));
+    notesManager.arrangeNotes(notes);
+}
 
-notes.push(notesManager.createNote("books", 'go get some books'));
-notes.push(notesManager.createNote("books2", 'go get some more books'));
 
-console.log(notes);
 
 // if there is no local storage, populate todo list object with example items
 if (!localStorage.getItem('todos')) {
@@ -77,11 +90,12 @@ if (!localStorage.getItem('todos')) {
 }
 
 
+// initial grid render
+// notesManager.arrangeNotes(notes);
 // initial homescreen render
-// domManipulator.renderAllToDos(todos, display);
+domManipulator.renderAllToDos(todos, display);
 domManipulator.renderProjectNames(todos, display);
-// temporary grid render
-notesManager.arrangeNotes(notes);
+
 
 // scroll to top of project names on page load
 const projectsDiv = document.querySelector('.projects');
@@ -90,7 +104,7 @@ projectsDiv.scrollTop = 0;
 
 
 
-
+// naviagtion
 toDoFolders.forEach(folder => {
     folder.addEventListener("click", e => domManipulator.changeFolder(e, todos, display));
 })
@@ -101,6 +115,7 @@ toDoFolders.forEach(folder => {
 newToDoLink.addEventListener('click', () =>{
     // turn off other menus
     newProjectMenu.style.display = "none";
+    newNoteMenu.style.display = "none";
     // DISPLAY SELECTED MENU
     newToDoMenu.style.display = "flex";
 })
@@ -108,8 +123,17 @@ newToDoLink.addEventListener('click', () =>{
 newProjectLink.addEventListener('click', () =>{
     // turn off other menus
     newToDoMenu.style.display = "none";
+    newNoteMenu.style.display = "none";
     // DISPLAY SELECTED MENU
     newProjectMenu.style.display = "flex";
+})
+
+newNoteLink.addEventListener('click', () =>{
+    // turn off other menus
+    newToDoMenu.style.display = "none";
+    newProjectMenu.style.display = "none";
+    // DISPLAY SELECTED MENU
+    newNoteMenu.style.display = "flex";
 })
 
 
@@ -147,6 +171,11 @@ createProject.addEventListener('click', e => {
     toDosManager.addNewProject(e, todos, overlayNew, addToDoForm, display);
 })
 
+// add new note
+createNote.addEventListener('click', e => {
+    notesManager.addNewNote(e, notes, overlayNew, addToDoForm, display);
+})
+
 editForm.addEventListener('submit', e => {
     toDosManager.editToDo(e, todos, display, editOverlay, editForm);
 })
@@ -173,15 +202,12 @@ closeEdit.addEventListener('click', () => {
     editOverlay.classList.toggle("overlay-edit-invisible");
 })
 
+// navigate to notes menu
+document.querySelector('#notes-nav').addEventListener('click', () => notesManager.arrangeNotes(notes));
+document.querySelector('#notes-nav').addEventListener('click', (e) => domManipulator.updateActiveNavMain(e));
 
 
 
-notes.push(notesManager.createNote("books3", 'go get some more bookssssssssss sssssssssss'));
-notesManager.arrangeNotes(notes);
-notes.push(notesManager.createNote("books4", 'go get some more bookssssssssss sssssssssss dfsd dfsd dfsdfsdfdsfds dfsdf dfsdfsdfs'));
-notesManager.arrangeNotes(notes);
-notes.push(notesManager.createNote("books5", 'go get some more bookssssssssss sssssssssss fdsf'));
-notesManager.arrangeNotes(notes);
-notes.push(notesManager.createNote("books6", 'go get some more bookssssssssss sssssssssss fsdfs fds dfs dfdfsdfsd'));
-notesManager.arrangeNotes(notes);
+
+
 

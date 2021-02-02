@@ -12,15 +12,29 @@
     // navigation list item
     &__item {
         width: auto;
+        
         margin-bottom: 1rem;
         padding: .5rem 1.5rem;
-        border-left: 3px solid transparent;
+        // alternate nave selection effect
+        //border-left: 3px solid transparent;
+
+        // notes button
+        &:last-child {
+            cursor: pointer;
+        }
 
         
 
         &:hover {
-            border-left: 3px solid $purple-light;
-            border-radius: 3px;
+            // border-left: 3px solid $purple-light;
+            // border-radius: 3px;
+            color: $purple;
+            font-weight: normal;
+            &::before {
+                content: "//";
+                margin-right: 10px;
+                font-weight: 700;
+            }
         }
 
         // list item containing a title and a sublist of projects
@@ -28,20 +42,27 @@
             padding: 0;
             
             &:hover {
-                border-left: 3px solid transparent;
+                //border-left: 3px solid transparent;
+                color: $color-text;
+                font-weight: 300;
+                &::before {
+                    content: "";
+                    margin-right: 0px;
+                }
             }
             
             // "Projects" title
             &-title {
+                margin-left: -3px;
                 padding: .5rem 1.5rem;
                 display: block;
-                border-left: 3px solid transparent;
-                border-radius: 3px;
+                //border-left: 3px solid transparent;
+                //border-radius: 3px;
 
                 
 
                 &:hover {
-                    border-left: 3px solid $purple-light;
+                    //border-left: 3px solid $purple-light;
                 }
             }
         }
@@ -50,8 +71,15 @@
 
     // the current selected list item
     &__selected {
-        border-left: 3px solid $purple-light !important;
-        border-radius: 3px;
+        //border-left: 3px solid $purple-light !important;
+        //border-radius: 3px;
+        color: $purple;
+        font-weight: normal;
+        &::before {
+            content: "//";
+            margin-right: 10px;
+            font-weight: 700; 
+        }
         
 
     }
@@ -76,15 +104,22 @@
     // projects list item
     &__item {
         padding: .4rem .8rem;
-        border-left: 3px solid transparent;
+        // border-left: 3px solid transparent;
         overflow-wrap: break-word;
         word-wrap: break-word;
 
         
 
         &:hover {
-            border-left: 3px solid $purple-light;
-            border-radius: 3px;
+            // border-left: 3px solid $purple-light;
+            // border-radius: 3px;
+            color: $purple;
+            font-weight: normal;
+            &::before {
+                content: "//";
+                margin-right: 10px;
+                font-weight: 700; 
+            }
         }
         &:not(:last-child) {
             
@@ -115,6 +150,8 @@
             background: rgba($purple, .8);
         }
 }
+
+
 
 // button to create new todo / project / note
 .new-todo {
@@ -171,6 +208,7 @@
 .project-name {
     cursor: pointer;
     max-width: 60%;
+    margin-right: auto;
     
 }
 

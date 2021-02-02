@@ -145,6 +145,17 @@
                     <div class="create-new__project-submit">Create Project</div>
                 </div>
 
+                <!-- this is the third menu of create new form. add new note -->
+                <div class="create-new__note" id="new-note-menu">
+
+                    <textarea class="create-new__note-input" placeholder="Title" 
+                    id="new-note-title" name="new-note" maxlength="30" required></textarea>
+
+                    <textarea class="create-new__note-input create-new__note-input-big" placeholder="Details" 
+                    id="new-note-text" name="new-note"></textarea>
+
+                    <div class="create-new__note-submit">Create note</div>
+                </div>
 
             </div>
 
@@ -165,9 +176,9 @@
         <nav class="side-bar">
 
             <ul class="nav">
-                <li class="nav__item project-count-container nav__selected"><span class="project-name todo-folder">Home</span><span class="home-count">1</span></li>
-                <li class="nav__item project-count-container"><span class="project-name todo-folder">Today</span><span class="today-count">0</span></li>
-                <li class="nav__item project-count-container"><span class="project-name todo-folder">Week</span><span class="week-count">0</span></li>
+                <li class="nav__item nav__item--link project-count-container nav__selected"><span class="project-name todo-folder">Home</span><span class="home-count">1</span></li>
+                <li class="nav__item nav__item--link project-count-container"><span class="project-name todo-folder">Today</span><span class="today-count">0</span></li>
+                <li class="nav__item nav__item--link project-count-container"><span class="project-name todo-folder">Week</span><span class="week-count">0</span></li>
                 <li class="nav__item nav__item--projects">
                     <span class="nav__item--projects-title">Projects</span>
                     <ul class="projects">
@@ -176,7 +187,7 @@
                         <li class="projects__item custom-project-count-container"><span class="project-name todo-folder">Study</span><span class="project-count">2</span></li> -->
                     </ul>
                 </li>
-                <li class="nav__item">Notes</li>
+                <li class="nav__item nav__item--link" id="notes-nav">Notes</li>
 
             </ul>
             <div class="new-todo">&plus;</div>
@@ -292,7 +303,7 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="grid">
+                <!-- <div class="grid">
                     <div class="grid-col grid-col--1">
 
                     </div>
@@ -301,7 +312,7 @@
                     </div>
                     <div class="grid-col grid-col--3">
 
-                    </div>
+                    </div> -->
 
 
                     <!-- <div class="note">

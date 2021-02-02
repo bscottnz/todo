@@ -94,12 +94,12 @@
 
     }
 
-    // &:hover {
-    //     transform: scale(1.003);
-    //     transform-origin: 50% 50%;
-    //     box-shadow: 3px 3px 5px 2px rgba(0,0,0,.2);
-    //     transition: all .2s ease-out;
-    // }
+    &:hover {
+        transform: scale(1.003);
+        transform-origin: 50% 50%;
+        box-shadow: 3px 3px 5px 2px rgba(0,0,0,.2);
+        transition: all .2s ease-out;
+    }
 
     // close icon
     &__close {
@@ -111,6 +111,8 @@
         line-height: 1;
         font-size: 20px;
         color: $purple;
+
+        cursor: pointer;
     }
 
 

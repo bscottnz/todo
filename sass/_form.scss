@@ -56,7 +56,7 @@
     }
 
     &__sidebar {
-        width: 14rem;
+        width: 15rem;
         padding: 1rem;
 
         background-color: $cream;
@@ -295,7 +295,7 @@
         }
     }
 
-    // window to create new project
+    // window to create new note
     &__project {
         
         flex: 1;
@@ -357,6 +357,79 @@
         
     
     }
+
+    // window to create new note
+    &__note {
+        
+        flex: 1;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        border-left: 1px solid $grey-light;
+
+        // default to hidden
+        display: none;
+
+        &-input {
+            width: 100%;
+            border: none;
+    
+            background-color: transparent;
+    
+            color: $color-text;
+            font-size: 1.6rem;
+            font-family: lato, sans-serif;
+    
+            resize: none;
+    
+            &:focus {
+                outline: none;
+            }
+
+            // larger input area
+            &-big {
+                height: 12rem;
+                margin-bottom: auto;
+
+                font-size: 1.4rem;
+        }
+        }
+
+        // submit todo button
+        &-submit {
+        text-align: center;
+        align-self: flex-start;
+
+        padding: .5rem 1rem;
+        border-radius: 3px;
+        border: 1px solid $blue-dark;
+        
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: $blue-dark;
+        background-color: transparent;
+        
+        cursor: pointer;
+        transition: all .3s;
+
+        &:hover {
+            color: white;
+            background-color: $blue-dark;
+        }
+
+        &:active {
+            outline: none;
+        }
+    }
+        
+        
+    
+    }
+
+
 }
 
 
