@@ -67,6 +67,10 @@
             }
         }
 
+        &--link {
+            cursor: pointer;
+        }
+
     }
 
     // the current selected list item
@@ -198,6 +202,8 @@
     font-size: 1.3rem;
     font-weight: 700;
     color: $cream-light;
+
+    pointer-events: none;
 }
 
 // cirlce with number of items in each custom project

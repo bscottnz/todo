@@ -571,6 +571,43 @@ export const domManipulator = (function () {
         
     }
 
+    // function to handle clicks on the wider navigation area. 
+    // I could'nt get it to work otherwise.
+    function changeFolder2(e, todos, display) {
+        // console.log('second');
+        // console.log(e.target.childNodes[0].textContent.toLowerCase());
+        
+        if (e.target.tagName == 'li' || e.target.tagName == 'LI') {
+            // sets the current folder variable to nav item that was clicked
+            toDosManager.changeCurrentProject(e.target.childNodes[0].textContent.toLowerCase());
+            console.log("you are in folder", toDosManager.getCurrentProject());
+
+
+
+            
+            // render all to-dos from all projects if on the home page. otherwise
+            // only render the relevent to-do items
+            if (toDosManager.getCurrentProject() === 'home') {
+                renderAllToDos(todos, display);
+                updateActiveNavMain(e);
+            } else {
+                
+                renderToDos(todos, display);
+                updateActiveNavMain(e);
+            }
+
+            // if changing to a new empty custom project, display placeholder screen
+            if (!['home', 'week', 'today'].includes(toDosManager.getCurrentProject())) {
+                if (todos[toDosManager.getCurrentProject()].length < 1) {
+                    renderEmptyProjectPlaceholder(todos, display);
+                }
+            }
+        }
+        
+        
+        
+    }
+
     // render the project names to the side bar
     function renderProjectNames(todos, display) {
         const projectContainer = document.querySelector('.projects');
@@ -593,6 +630,9 @@ export const domManipulator = (function () {
             projectNameCount.classList.add('projects__item');
             projectNameCount.classList.add('nav__item--link');
             projectNameCount.classList.add('custom-project-count-container');
+            projectNameCount.addEventListener("click", e => domManipulator.changeFolder2(e, todos, display));
+            projectNameCount.addEventListener("click", e => updateActiveNavMain(e));
+
 
             // project name
             const projectName = document.createElement('span');
@@ -736,10 +776,16 @@ export const domManipulator = (function () {
         navItems.forEach(item => {
             item.classList.remove("nav__selected");
         })
+       
         if (e.target.textContent === 'Notes') {
             e.target.classList.add('nav__selected');
         } else {
-            e.target.parentElement.classList.add('nav__selected');
+            if (e.target.tagName == "span" || e.target.tagName == "SPAN") {
+                e.target.parentElement.classList.add('nav__selected');
+            } else if (e.target.tagName == "li" || e.target.tagName == "LI") {
+                e.target.classList.add('nav__selected');
+                console.log(e.target);
+            }
         }
         
         
@@ -758,6 +804,7 @@ export const domManipulator = (function () {
         renderDetails,
         renderEdit,
         changeFolder,
+        changeFolder2,
         renderProjectNames,
         renderProjectCount,
         projectNamesScrollTop,

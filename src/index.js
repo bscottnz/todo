@@ -110,6 +110,7 @@ toDoFolders.forEach(folder => {
 })
 
 
+
 // control which form menu is open 
 
 newToDoLink.addEventListener('click', () =>{
@@ -205,6 +206,15 @@ closeEdit.addEventListener('click', () => {
 // navigate to notes menu
 document.querySelector('#notes-nav').addEventListener('click', () => notesManager.arrangeNotes(notes));
 document.querySelector('#notes-nav').addEventListener('click', (e) => domManipulator.updateActiveNavMain(e));
+
+let todoLinks = document.querySelectorAll('.nav__item--link');
+todoLinks = Array.from(todoLinks);
+todoLinks.pop();
+// console.log(todoLinks);
+// naviagtion 2, for when the surrounding li item is clicked.
+todoLinks.forEach(folder => {
+    folder.addEventListener("click", e => domManipulator.changeFolder2(e, todos, display));
+})
 
 
 

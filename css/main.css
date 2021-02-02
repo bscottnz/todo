@@ -1202,6 +1202,10 @@ li {
   display: block;
 }
 
+.nav__item--link {
+  cursor: pointer;
+}
+
 .nav__selected {
   color: #501f3a;
   font-weight: normal;
@@ -1319,6 +1323,7 @@ li {
   font-size: 1.3rem;
   font-weight: 700;
   color: #f7f7f7;
+  pointer-events: none;
 }
 
 .project-count {
