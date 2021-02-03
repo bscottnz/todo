@@ -60,6 +60,11 @@
         padding: 1rem;
 
         background-color: $cream;
+
+        @media(max-width: 450px) {
+            padding: .5rem;
+            width: 12rem;
+        }
     }
 
     // wrapper around options and input area 
@@ -75,7 +80,7 @@
         flex-direction: column;
         align-self: flex-start;
         padding-left: .5rem;
-        padding-right: 4rem;
+        // padding-right: 4rem;
 
         font-size: 1.8rem;
         font-weight: 300;
@@ -89,15 +94,27 @@
             cursor: pointer;
 
             &:hover {
-                border-left: 3px solid $purple-light;
-                border-radius: 3px;
+                color: $purple;
+                font-weight: normal;
+                &::before {
+                    content: "//";
+                    margin-right: .7rem;
+                    font-weight: 700; 
+                }
             }
 
             &-active {
-                border-left: 3px solid $purple-light;
-                border-radius: 3px;
+                color: $purple;
+                font-weight: normal;
+                &::before {
+                    content: "//";
+                    margin-right: .7rem;;
+                    font-weight: 700; 
+                }
             }
         }
+
+        
     }
     // input panel
     &__entry {
@@ -173,6 +190,11 @@
     &__wrapper-priority-submit {
         display: flex;
         justify-content: space-between;
+
+        @media (max-width: 400px) {
+            flex-direction: column;
+    
+        }
     }
 
     // priority input container
@@ -292,6 +314,11 @@
 
         &:active {
             outline: none;
+        }
+
+        @media (max-width: 400px) {
+            margin-top: 8px;
+    
         }
     }
 

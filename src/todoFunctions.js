@@ -628,6 +628,7 @@ export const domManipulator = (function () {
             // container around project name and count
             const projectNameCount = document.createElement('li');
             projectNameCount.classList.add('projects__item');
+            // projectNameCount.classList.add('projects__item--custom');
             projectNameCount.classList.add('nav__item--link');
             projectNameCount.classList.add('custom-project-count-container');
             projectNameCount.addEventListener("click", e => domManipulator.changeFolder2(e, todos, display));

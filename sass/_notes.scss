@@ -41,7 +41,7 @@
      }
 }
 
-// testing media queary
+// reduce note columns
 @media (max-width: 1180px) {
     .grid-col--2 {
         display: none;
@@ -49,6 +49,20 @@
 
     .grid-col {
         width: 50%;
+    }
+}
+
+// reduce note columns
+@media (max-width: 450px) {
+    .grid-col--2 {
+        display: none;
+    }
+    .grid-col--3 {
+        display: none;
+    }
+
+    .grid-col {
+        width: 100%;
     }
 }
 

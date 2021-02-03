@@ -216,6 +216,42 @@ todoLinks.forEach(folder => {
     folder.addEventListener("click", e => domManipulator.changeFolder2(e, todos, display));
 })
 
+// hamburger menu for mobile
+const mobileMenu = document.querySelector('.menu-btn');
+let mobileMenuOpen = false;
+const menuIcon = document.querySelector('menu-btn__icon');
+
+// i couldnt add classes to the before and after divs, so did it inline
+mobileMenu.addEventListener('click', () => {
+    mobileMenuOpen = !mobileMenuOpen;
+    if (mobileMenuOpen) {
+        document.querySelector('.side-bar').style.left = 0;
+        document.querySelector('.menu-btn__icon--before').style.transform = "rotate(135deg)";
+        document.querySelector('.menu-btn__icon--before').style.top = "2px";
+        document.querySelector('.menu-btn__icon--after').style.transform = "rotate(-135deg)";
+        document.querySelector('.menu-btn__icon--after').style.top = "-2px";
+        document.querySelector('.menu-btn__icon').style.backgroundColor = "transparent";
+        
+    } else {
+        document.querySelector('.side-bar').style.left = "140px";
+        document.querySelector('.menu-btn__icon--before').style.transform = "rotate(0)";
+        document.querySelector('.menu-btn__icon--before').style.top = "-6px";
+        document.querySelector('.menu-btn__icon--after').style.transform = "rotate(0)";
+        document.querySelector('.menu-btn__icon--after').style.top = "6px";
+        document.querySelector('.menu-btn__icon').style.backgroundColor = "#f7f7f7";
+    }
+})
+
+const createNewOptions = document.querySelectorAll('.create-new__options-items');
+createNewOptions.forEach(option => {
+    option.addEventListener('click', e => {
+        createNewOptions.forEach(option => {
+            option.classList.remove('create-new__options-items-active');
+        });
+        e.target.classList.add('create-new__options-items-active');
+    });
+})
+
 
 
 
