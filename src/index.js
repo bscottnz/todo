@@ -45,9 +45,9 @@ const todos = JSON.parse(localStorage.getItem('todos')) || {
                                                             "home": [],
                                                             "today": [],
                                                             "week": [],
-                                                            "gym":[],
-                                                            "study":[],
-                                                            "work":[]                                              
+                                                            "Gym":[],
+                                                            "Study":[],
+                                                            "Work":[]                                              
                                                             }
 
 // if there is no local storage, populate todo list object with example items
@@ -61,14 +61,14 @@ if (!localStorage.getItem('todos')) {
 
     todos.week.push(toDosManager.createToDo("sport", "medium", "2021-06-09", "", "week"));
 
-    todos.gym.push(toDosManager.createToDo("swim", "medium", "2021-06-09", "", "gym", true));
-    todos.gym.push(toDosManager.createToDo("walk", "high", "2021-06-09", "", "gym"));
-    todos.gym.push(toDosManager.createToDo("weights", "low", "2021-06-09", "", "gym"));
+    todos.Gym.push(toDosManager.createToDo("swim", "medium", "2021-06-09", "", "Gym", true));
+    todos.Gym.push(toDosManager.createToDo("walk", "high", "2021-06-09", "", "Gym"));
+    todos.Gym.push(toDosManager.createToDo("weights", "low", "2021-06-09", "", "Gym"));
     
-    todos.study.push(toDosManager.createToDo("learn webkit", "high", "2021-06-09", "", "study", true));
-    todos.study.push(toDosManager.createToDo("learn react", "medium", "2021-06-09", "", "study"));
+    todos.Study.push(toDosManager.createToDo("learn webkit", "high", "2021-06-09", "", "Study", true));
+    todos.Study.push(toDosManager.createToDo("learn react", "medium", "2021-06-09", "", "Study"));
 
-    todos.work.push(toDosManager.createToDo("get that report on johnson's desk", "low", "2021-06-09", "", "work"));
+    todos.Work.push(toDosManager.createToDo("get that report on johnson's desk", "low", "2021-06-09", "", "Work"));
 }
 
 // array of to-do notes 
@@ -276,3 +276,5 @@ createNewOptions.forEach(option => {
         e.target.classList.add('create-new__options-items-active');
     });
 })
+
+console.log(todos)

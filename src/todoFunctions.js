@@ -544,8 +544,18 @@ export const domManipulator = (function () {
     function changeFolder(e, todos, display) {
         
         // sets the current folder variable to nav item that was clicked
-        toDosManager.changeCurrentProject(e.target.textContent.toLowerCase());
+        // because i set everything to be lowercase in my code, it woudl crash when i used uppercase
+        // letters in my custom projects. this allows uppercase project names
+        
+        if (['Home', 'Week', 'Today'].includes(e.target.textContent)) {
+            toDosManager.changeCurrentProject(e.target.textContent.toLowerCase());
+        } else {
+            toDosManager.changeCurrentProject(e.target.textContent);
+        }
+
         console.log("you are in folder", toDosManager.getCurrentProject());
+
+    
 
 
 
@@ -580,7 +590,18 @@ export const domManipulator = (function () {
         
         if (e.target.tagName == 'li' || e.target.tagName == 'LI') {
             // sets the current folder variable to nav item that was clicked
-            toDosManager.changeCurrentProject(e.target.childNodes[0].textContent.toLowerCase());
+            // toDosManager.changeCurrentProject(e.target.childNodes[0].textContent.toLowerCase());
+            // console.log("you are in folder", toDosManager.getCurrentProject());
+            // console.log(e.target.childNodes[0].textContent.toLowerCase());
+
+            // sets the current folder variable to nav item that was clicked
+        
+            if (['Home', 'Week', 'Today'].includes(e.target.childNodes[0].textContent)) {
+                toDosManager.changeCurrentProject(e.target.childNodes[0].textContent.toLowerCase());
+            } else {
+                toDosManager.changeCurrentProject(e.target.childNodes[0].textContent);
+            }
+
             console.log("you are in folder", toDosManager.getCurrentProject());
 
 
@@ -797,7 +818,7 @@ export const domManipulator = (function () {
                 e.target.parentElement.classList.add('nav__selected');
             } else if (e.target.tagName == "li" || e.target.tagName == "LI") {
                 e.target.classList.add('nav__selected');
-                console.log(e.target);
+                // console.log(e.target);
             }
         }
         
