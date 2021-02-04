@@ -53,7 +53,7 @@
             
             // "Projects" title
             &-title {
-                margin-left: -3px;
+                // margin-left: -1px;
                 padding: .5rem 1.5rem;
                 display: block;
                 //border-left: 3px solid transparent;
@@ -298,4 +298,14 @@
         }
     }
 
+}
+
+// notes naveigation link
+#notes-nav {
+    margin-top: -8px;
+}
+
+// week navigation link
+#week-nav {
+    margin-left: 1px;
 }

@@ -1355,7 +1355,6 @@ li {
 }
 
 .nav__item--projects-title {
-  margin-left: -3px;
   padding: .5rem 1.5rem;
   display: block;
 }
@@ -1591,6 +1590,14 @@ li {
 .menu-btn__icon--checked-bottom {
   -webkit-transform: rotate(-135deg);
           transform: rotate(-135deg);
+}
+
+#notes-nav {
+  margin-top: -8px;
+}
+
+#week-nav {
+  margin-left: 1px;
 }
 
 .grid {

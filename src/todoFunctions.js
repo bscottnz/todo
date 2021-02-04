@@ -480,6 +480,7 @@ export const domManipulator = (function () {
         const index = toDo.dataset.index;
 
         toDoObject[project][index].checked = !toDoObject[project][index].checked;
+        console.log(toDoObject[project]);
     
         // save todos to local storage
         localStorage.setItem("todos", JSON.stringify(toDoObject));
@@ -666,6 +667,13 @@ export const domManipulator = (function () {
             }
             
             projectContainer.appendChild(projectNameCount);
+
+            
+            // this re-applys nav link selected status to selected custom project,
+            // since the entire custom project names div is re-rendered each time. 
+            if(toDosManager.getCurrentProject() == project) {
+                projectNameCount.classList.add('nav__selected')
+            }
         }
 
 
@@ -674,6 +682,7 @@ export const domManipulator = (function () {
         // sums number of non checked item in project array and displays count text as this sum
         // this will only count the items that are specifically saved to home folder,
         // i want to count all todos.
+
         // homeCount.textContent = todos.home.reduce((total, value) => {
         //     return total + !value.checked;
         // }, 0);
@@ -722,7 +731,7 @@ export const domManipulator = (function () {
 
     // display the amount of todo items next to the project title
     function renderProjectCount(todos, display) {
-
+ 
     }
 
     // scroll poject names to top
@@ -765,6 +774,9 @@ export const domManipulator = (function () {
             // change folder to home
             toDosManager.changeCurrentProject('home');
             renderAllToDos(todos, display);
+            // update nave link to show home active
+            document.querySelector('.nav').children.item(0).classList.add('nav__selected');
+            console.log(document.querySelector('.nav').children.item(0));
 
             
 
@@ -792,6 +804,15 @@ export const domManipulator = (function () {
         
     }
 
+    // after form closes, reset the active link to the new todo menu
+    function resetActiveFormLink() {
+        const createNewOptions = document.querySelectorAll('.create-new__options-items');
+        createNewOptions.forEach(option => {
+            option.classList.remove('create-new__options-items-active');
+        });
+        createNewOptions[0].classList.add('create-new__options-items-active');
+    }
+
     
 
     return {
@@ -811,7 +832,8 @@ export const domManipulator = (function () {
         projectNamesScrollTop,
         projectNamesScrollBottom,
         renderEmptyProjectPlaceholder,
-        updateActiveNavMain
+        updateActiveNavMain,
+        resetActiveFormLink
     };
 })();
 
@@ -983,13 +1005,10 @@ export const toDosManager = (function () {
         // if text was entered in the input and project doesnt already exist
         if (newProject && !(newProject.toLowerCase() in todos)) {
             todos[newProject] = [];
+
             // render project names in sidebar
-            // #########################################
-            //code goes here
             domManipulator.renderProjectNames(todos, display);
-            // #########################################
-
-
+            
             // sets the current folder variable to nav item that was clicked
             toDosManager.changeCurrentProject(newProject);
             console.log("you are in folder", toDosManager.getCurrentProject());
@@ -1002,6 +1021,14 @@ export const toDosManager = (function () {
                 domManipulator.renderToDos(todos, display);
             }
 
+            // sets nav active status to newly created project
+            const navItems = document.querySelectorAll('.nav__item--link');
+            navItems.forEach(item => {
+                item.classList.remove("nav__selected");
+            })
+            document.querySelector('.projects').lastChild.classList.add('nav__selected');
+
+            // scrolls to bottom of custom projects div
             domManipulator.projectNamesScrollBottom();
 
           // if the created project already exists, change folder to that project  
@@ -1042,6 +1069,10 @@ export const toDosManager = (function () {
 
         // show a placeholder screen after a new empty project has been created
         domManipulator.renderEmptyProjectPlaceholder(todos, display);
+
+        //update local storage
+        localStorage.setItem("todos", JSON.stringify(todos));
+
     }
 
     function checkEmptyProject(todos, display) {
@@ -1065,6 +1096,10 @@ export const toDosManager = (function () {
                 
                 changeCurrentProject('home');
                 domManipulator.renderAllToDos(todos, display);
+
+                // update nave link to show home active
+                document.querySelector('.nav').children.item(0).classList.add('nav__selected');
+                console.log(document.querySelector('.nav').children.item(0));
             }
         }
         
@@ -1195,6 +1230,9 @@ export const notesManager = (function () {
         notes.unshift(newNote);
 
         arrangeNotes(notes);
+        // sets nav active link to 'notes' 
+        document.querySelector('#notes-nav').click();
+        
         // closes the form and removes the overlay after submission
         overlay.classList.toggle('overlay-new-invisible');
         form.classList.toggle('create-new-open');
