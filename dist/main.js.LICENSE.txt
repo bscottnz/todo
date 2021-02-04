@@ -1,0 +1,6 @@
+/*!
+ * Colcade v0.2.0
+ * Lightweight masonry layout
+ * by David DeSandro
+ * MIT license
+ */

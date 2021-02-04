@@ -73,7 +73,7 @@ export const domManipulator = (function () {
             toDoEdit.classList.add('todo__icon');
             toDoEdit.addEventListener('click', e => renderEdit(e, toDoList, element));
             const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-            use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../img/edit.svg#icon-edit')
+            use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/edit.svg#icon-edit')
             toDoEdit.appendChild(use);
             
             // create a delete icon for the to-do item
@@ -82,7 +82,7 @@ export const domManipulator = (function () {
             toDoDelete.classList.add('todo__icon-bin');
             toDoDelete.addEventListener('click', e => toDosManager.deleteToDo(e, todos, element));
             const use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
-            use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../img/icons.svg#icon-bin')
+            use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/icons.svg#icon-bin')
             toDoDelete.appendChild(use2);
             
             toDoBody.appendChild(toDoCheckBox);
@@ -163,7 +163,7 @@ export const domManipulator = (function () {
                 toDoEdit.classList.add('todo__icon');
                 toDoEdit.addEventListener('click', e => renderEdit(e, toDoObject[project], element));
                 const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-                use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../img/edit.svg#icon-edit')
+                use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/edit.svg#icon-edit')
                 toDoEdit.appendChild(use);
                 
                 // create a delete icon for the to-do item
@@ -172,7 +172,7 @@ export const domManipulator = (function () {
                 toDoDelete.classList.add('todo__icon-bin');
                 toDoDelete.addEventListener('click', e => toDosManager.deleteToDo(e, toDoObject, element));
                 const use2 = document.createElementNS("http://www.w3.org/2000/svg", "use");
-                use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '../img/icons.svg#icon-bin')
+                use2.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/icons.svg#icon-bin')
                 toDoDelete.appendChild(use2);
                 
                 toDoBody.appendChild(toDoCheckBox);

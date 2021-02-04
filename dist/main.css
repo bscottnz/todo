@@ -76,8 +76,8 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(59, 163, 149, 0.8)), to(rgba(117, 216, 213, 0.9))), url("../img/wood-bg.jpg");
-  background-image: linear-gradient(to right bottom, rgba(59, 163, 149, 0.8), rgba(117, 216, 213, 0.9)), url("../img/wood-bg.jpg");
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(59, 163, 149, 0.8)), to(rgba(117, 216, 213, 0.9))), url("img/wood-bg.jpg");
+  background-image: linear-gradient(to right bottom, rgba(59, 163, 149, 0.8), rgba(117, 216, 213, 0.9)), url("img/wood-bg.jpg");
   background-size: cover;
   font-family: lato, sans-serif;
   font-size: 1.6rem;
@@ -167,7 +167,7 @@ li {
   height: 1.5rem;
   width: 1.5rem;
   display: block;
-  background: url("../img/check.png"), #3ba395;
+  background: url("img/check.png"), #3ba395;
   background-repeat: no-repeat;
   background-size: contain;
 }
