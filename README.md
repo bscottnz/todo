@@ -10,7 +10,7 @@ Keep track of tasks with custom project folders and notes.
 - Fully responsive.
 - Data saved to local storage.
 
-Feature ideas to implement
+Feature ideas to implement.
 
 - Sort by date / priority.
 - Create logins and allow shared projects / notes between users.
